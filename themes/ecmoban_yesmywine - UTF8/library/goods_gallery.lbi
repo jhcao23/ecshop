@@ -1,0 +1,35 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $pictures}-->
+
+  <div class="catalog" id="catalog"> 
+  <a title="向上" class="aUp prev disabled" href="javascript:void(0)" ></a>
+    <div class="imgbox1">
+      <ul class="imgbox" id="image_list" style="position:absolute;">
+        <!-- {foreach from=$pictures item=picture}-->
+		
+        <li> 
+	<a href="javascript:void(0)" onClick="get_goods_img({$id},{$picture.img_id},this)"> 
+		<img alt="{$picture.goods_name}" src="{if $picture.thumb_url}{$picture.thumb_url}{else}{$picture.img_url}{/if}">
+		</a> 
+		</li>
+		
+		
+        <!--{/foreach}-->
+      </ul>
+    </div>
+    <a title="向下" class="aDown next disabled" href="javascript:void(0)" ></a> 
+	</div>
+
+<!--{/if}-->
+<script>
+function get_goods_img(id,img_id,click_this)
+{
+	$("#image_list a").not(click_this).find('img').css('border-color','#E7E7E7');
+	$(click_this).find('img').css('border-color','#E4393C');
+	$.post('goods.php',{act:'get_goods_img',id:id,img_id:img_id},function(data){
+		$(".MagicZoomBigImageCont img").attr('src',data.img_original);
+		$(".MagicZoom img").attr('src',data.img_url);
+		//alert(data.img_original+'\n'+data.img_url);
+	},'json');
+}
+</script>

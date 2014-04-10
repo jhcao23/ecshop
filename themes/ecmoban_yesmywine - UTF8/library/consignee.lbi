@@ -1,0 +1,106 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="ord_address_adsSel"> {insert_scripts files='utils.js,transport.js'}
+<!-- {if $consignee.consignee eq null} -->
+  <p class="mt10" id="newAds-P"> <a class="adsNew block">使用新地址</a><span class="ads_other ml10" style="display: none;"><b></b><a class="ads_other blue" style="display: none;">使用其它地址</a></span> </p>
+  <!-- {/if} -->
+  <div class="ord_address_adsWrite clearfix"  id="new-address">
+    <ul class="clearfix">
+      <li>
+        <label><span class="red mr5">*</span> 收货人： </label>
+        <p>
+          <input type="text" name="consignee" class="input_txt" id="consignee_{$sn}" value="{$consignee.consignee|escape}">
+        </p>
+      </li>
+      <li>
+        <label><span class="red mr5">*</span>电子邮箱：</label>
+        <p>
+          <input type="text" name="email" class="input_txt" id="email_{$sn}" value="{$consignee.email|escape}">
+        </p>
+      </li>
+      <li>
+        <label><span class="red mr5">*</span>固定电话：</label>
+        <p>
+          <input type="text" name="tel" class="input_txt" id="tel_{$sn}" value="{$consignee.tel|escape}">
+        </p>
+      </li>
+      <li>
+        <label>手&nbsp;&nbsp;&nbsp;&nbsp;机：</label>
+        <p>
+          <input type="text" name="mobile" class="input_txt" id="mobile_{$sn}" value="{$consignee.mobile|escape}">
+        </p>
+      </li>
+      <!-- {if $real_goods_count gt 0} -->
+      <!-- 购物车中存在实体商品显示国家和地区 -->
+      <li>
+        <label><span class="red mr5">*</span>地&nbsp;&nbsp;&nbsp;&nbsp;区：</label>
+        <p class="ord_select" id="area-component">
+          <select name="country" id="selCountries_{$sn}" onchange="region.changed(this, 1, 'selProvinces_{$sn}')" style="border:1px solid #ccc;">
+            <option value="0" >{$lang.please_select}{$name_of_region[0]}</option>
+            <!-- {foreach from=$country_list item=country} -->
+            <option value="{$country.region_id}" {if $consignee.country eq $country.region_id}selected{/if}>{$country.region_name}</option>
+            <!-- {/foreach} -->
+          </select>
+          <select name="province" id="selProvinces_{$sn}" onchange="region.changed(this, 2, 'selCities_{$sn}')" style="border:1px solid #ccc;">
+            <option value="0">{$lang.please_select}{$name_of_region[1]}</option>
+            <!-- {foreach from=$province_list.$sn item=province} -->
+            <option value="{$province.region_id}" {if $consignee.province eq $province.region_id}selected{/if}>{$province.region_name}</option>
+            <!-- {/foreach} -->
+          </select>
+          <select name="city" id="selCities_{$sn}" onchange="region.changed(this, 3, 'selDistricts_{$sn}')" style="border:1px solid #ccc;">
+            <option value="0">{$lang.please_select}{$name_of_region[2]}</option>
+            <!-- {foreach from=$city_list.$sn item=city} -->
+            <option value="{$city.region_id}" {if $consignee.city eq $city.region_id}selected{/if}>{$city.region_name}</option>
+            <!-- {/foreach} -->
+          </select>
+          <select name="district" id="selDistricts_{$sn}" {if !$district_list.$sn}style="display:none"{/if} style="border:1px solid #ccc;">
+            <option value="0">{$lang.please_select}{$name_of_region[3]}</option>
+            <!-- {foreach from=$district_list.$sn item=district} -->
+            <option value="{$district.region_id}" {if $consignee.district eq $district.region_id}selected{/if}>{$district.region_name}</option>
+            <!-- {/foreach} -->
+          </select>
+        </p>
+      </li>
+      <!-- {/if} -->
+      <!-- {if $real_goods_count gt 0} -->
+      <!-- 购物车中存在实体商品显示详细地址以及邮政编码 -->
+      <li>
+        <label><span class="red mr5">*</span>详细地址：</label>
+        <p>
+          <input type="text" name="address" class="input_txt" size="55" d="address_{$sn}" value="{$consignee.address|escape}">
+        </p>
+      </li>
+      <li>
+        <label>邮政编码：</label>
+        <p>
+          <input type="text" name="zipcode" class="input_txt"  id="zipcode_{$sn}" value="{$consignee.zipcode|escape}">
+        </p>
+      </li>
+      <!-- {/if} -->
+      <!-- {if $real_goods_count gt 0} -->
+      <!-- 购物车中存在实体商品显示最佳送货时间及标志行建筑 -->
+      <li>
+        <label>标志建筑：</label>
+        <p>
+          <input type="text" name="sign_building" class="input_txt"  id="sign_building_{$sn}" value="{$consignee.sign_building|escape}">
+        </p>
+      </li>
+      <li>
+        <label>最佳送货时间：</label>
+        <p>
+          <input type="text" name="best_time" class="input_txt"  id="best_time_{$sn}" value="{$consignee.best_time|escape}">
+        </p>
+      </li>
+    </ul>
+    <!-- {/if} -->
+	<p class="mt10">
+    <input type="submit" name="Submit" class="ord_btn" value="{$lang.shipping_address}" style="border:0px;"/>
+    <!-- {if $smarty.session.user_id gt 0 and $consignee.address_id gt 0} -->
+    <!-- 如果登录了，显示删除按钮 -->
+    <input name="button" type="button" onclick="if (confirm('{$lang.drop_consignee_confirm}')) location.href='flow.php?step=drop_consignee&amp;id={$consignee.address_id}'"  class="ml5 ord_btnOff" value="{$lang.drop}" />
+    <!-- {/if} -->
+	</p>
+    <input type="hidden" name="step" value="consignee" />
+    <input type="hidden" name="act" value="checkout" />
+    <input name="address_id" type="hidden" value="{$consignee.address_id}" />
+  </div>
+</div>

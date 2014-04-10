@@ -1,0 +1,56 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="channel channel-yangjiu mt15">
+<div class="channel-header">
+  <h2>{$goods_cat.name}</h2>
+  <ul>
+    <!--{foreach from=$goods_cat.cat_clild item=cat name=foo}-->
+    <li><a target="_blank" title="{$cat.name}" href="{$cat.url}">{$cat.name}</a></li>
+    <!--{/foreach}-->
+    <li class="more"><a target="_blank" href="{$cat.url}">全部{$cat.name}</a></li>
+  </ul>
+</div>
+<div class="section grid-mr">
+<div class="main">
+  <div class="clearfix">
+    <div class="left">
+      <div class="channel-brands">
+        <ul>
+          <!--{foreach from=$goods_cat.brands item=brands name=foo}-->
+          <li><a target="_blank" title="{$brands.brand_name}" href="{$brands.url}" >{if $brands.logo neq 'data/brandlogo/'}<img width="80" height="40" border="0" alt="{$brands.brand_name}" src="{$brands.logo}">{else}{$brands.brand_name}{/if}</a></li>
+          <!--{/foreach}-->
+        </ul>
+      </div>
+    </div>
+    <div class="main"> {insert name='get_adv_child' ad_arr=$adarr id=$goods_cat.id} </div>
+  </div>
+  <div class="goodslist">
+    <ul class="clearfix">
+      <!--{foreach from=$cat_goods item=goods}-->
+      <li>
+        <dl>
+          <dt> <a title="{$goods.name|escape:html}" target="_blank" href="{$goods.url}" class="pimg"><img width="110" height="180" alt="{$goods.name}" src="{$goods.thumb}"></a>
+            <p class="promo-icon"> </p>
+          </dt>
+          <dd class="base"> <a title="{$goods.name}" target="_blank" href="{$goods.url}" class="pname"> {$goods.name|escape:html}<span title="" class="en"></span> </a>
+            <p class="price"> <span class="minprice">¥<strong>{$goods.shop_price}</strong></span> <span class="maxprice"><del>¥{$goods.market_price}</del></span> </p>
+          </dd>
+          <dd class="sum"> <span class="soldnum">售出<strong>{$goods.soldnum}</strong></span> <span class="ratepercent">好评<strong>{$goods.ratenum}%</strong></span> </dd>
+          <dd class="slogan">
+            <p>{$goods.brief}</p>
+          </dd>
+        </dl>
+      </li>
+      <!--{/foreach}-->
+    </ul>
+  </div>
+</div>
+<div class="right">
+  <div class="channel-topboard" id="topboard_cat_id_{$goods_cat.id}">
+    <h4>一周销量排行</h4>
+    <ul>
+      <!--{foreach from=$goods_cat.sales_volume item=goods name=foo}-->
+      <li class="item"> <em>{$smarty.foreach.foo.iteration}</em> <a title="{$goods.name|escape:html}" class="prod-img" target="_blank" href="{$goods.url}"><img width="60" height="98" border="0" alt="" src="{$goods.goods_thumb}"></a> <a title="{$goods.name|escape:html}" class="prod-name" target="_blank" href="{$goods.url}">{$goods.goods_name|escape:html}</a> <span class="prod-soldnum">售出 <strong>{if $goods.number neq null}{$goods.number}{else}0{/if}</strong></span> <span class="prod-price"> <strong>{$goods.shop_price}</strong> </span> </li>
+      <!--{/foreach}-->
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+ <!-- {if $attribute_linked.1 neq null} -->
+<div style="" class="mod-prodlist-c5 mt10 pd-recommend-see"><a target="_blank" class="bfd_img_logo1" href="http://www.baifendian.com/"></a>
+  <h3>猜你喜欢</h3>
+  <ul class="clearfix">
+    <!-- 开始循环属性关联的商品 {foreach from=$attribute_linked item=linked}-->
+    <!-- {if $linked.goods} -->
+    <!-- {foreach from=$linked.goods item=linked_goods_data} -->
+    <li> <a title="{$linked_goods_data.name|escape:html}" class="prod-img" href="{$linked_goods_data.url}"><img width="110" height="180" src="{$linked_goods_data.goods_thumb}"></a> <a title="{$linked_goods_data.name|escape:html}" class="prod-name" href="{$linked_goods_data.url}">{$linked_goods_data.goods_name|escape:html}</a>
+      <!-- {if $releated_goods_data.promote_price neq 0} -->
+      <span class="prod-minprice">{$lang.promote_price}<strong>{$releated_goods_data.formated_promote_price}</strong></span>
+      <!-- {else} -->
+      <span class="prod-minprice">{$lang.shop_price}<strong>{$releated_goods_data.shop_price}</strong></span>
+      <!-- {/if} -->
+    </li>
+    <!-- {/foreach} -->
+    <!-- {/if} -->
+    <!-- 结束属性关联的商品 {/foreach}-->
+  </ul>
+</div>
+ <!-- {/if} -->

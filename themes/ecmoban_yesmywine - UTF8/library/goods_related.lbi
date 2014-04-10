@@ -1,0 +1,18 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $related_goods} -->
+	<div style="" class="mod-prodlist-c5 mt10 pd-recommend-my"><a target="_blank" class="bfd_img_logo1" href="http://www.baifendian.com/"></a><h3>{$lang.releate_goods}</h3><ul class="clearfix">
+	   <!--{foreach from=$related_goods item=releated_goods_data}-->
+	<li>
+		<a title="{$releated_goods_data.goods_name}" class="prod-img" href="{$releated_goods_data.url}"><img width="110" height="180" src="{$releated_goods_data.goods_thumb}"></a>
+		<a title="{$releated_goods_data.goods_name}" class="prod-name" href="{$releated_goods_data.url}">{$releated_goods_data.goods_name}</a>
+		<!-- {if $releated_goods_data.promote_price neq 0} -->
+		<span class="prod-minprice">{$lang.promote_price}<strong>{$releated_goods_data.formated_promote_price}</strong></span>
+		<!-- {else} -->
+		<span class="prod-minprice">{$lang.shop_price}<strong>{$releated_goods_data.shop_price}</strong></span>
+		 <!-- {/if} -->
+		</li>
+	    <!--{/foreach}-->
+	</ul></div>
+<!-- {/if} -->
+
+

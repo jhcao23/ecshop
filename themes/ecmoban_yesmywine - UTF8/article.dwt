@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+{* 包含脚本文件 *}
+{insert_scripts files='common.js'}
+</head>
+<body>
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+<!--当前位置 start-->
+<div class="helpWrapper  content pb20"> <!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem -->
+  <div class="top_title">
+    <h4>帮助中心</h4>
+    <div class="top_link">
+      <h1>{$article.title}</h1>
+    </div>
+  </div>
+  <div class="detil_inner">
+    <div class="left" style="height: 1119px;">
+      <ul>
+        <!-- {foreach from=$helps item=help_cat} -->
+        <li class="title">{$help_cat.cat_name}</li>
+        <!-- {foreach from=$help_cat.article item=item} -->
+        <li <!-- {if $item.article_id eq $id} -->class="on"<!-- {/if} -->><a href="{$item.url}">{$item.short_title}</a></li>
+        <!-- {/foreach} -->
+        <!-- {/foreach} -->
+      </ul>
+    </div>
+    <div class="right help_con">
+
+          {$article.content}
+
+    </div>
+  </div>
+</div>
+<div class="footer" id="footer">
+  <div class="foot-main"> <!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem --> </div>
+  <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem --> </div>
+</body>
+</html>

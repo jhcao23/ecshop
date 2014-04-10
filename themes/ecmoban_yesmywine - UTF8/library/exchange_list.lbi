@@ -1,0 +1,169 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="goods">
+<div class="goods-title">
+  <div class="goods-tab clearfix">
+    <ul>
+      <li class="all on"><a href="javascript:;">全部</a></li>
+  
+	  </ul>
+	<form name="selectPageForm" action="{$smarty.server.PHP_SELF}" method="get">
+        <div class="goods-page-min"> <span>共有<strong>{$pager.record_count}</strong>件商品</span>
+          <label>{$pager.page}/{$pager.page_count}</label>
+          <!-- {if $pager.page eq 1} -->
+          <a class="prev disabled" href="javascript:;">{$lang.page_prev}</a>
+          <!--{else}-->
+          <a class="prev" href="{$pager.page_prev}">{$lang.page_prev}</a>
+          <!--{/if}-->
+          <!-- {if $pager.page >=  $pager.page_count} -->
+          <a class="next disabled" href="javascript:;">{$lang.page_prev}</a>
+          <!--{else}-->
+          <a class="next" href="{$pager.page_next}">{$lang.page_next}</a>
+          <!--{/if}-->
+          </a> </div>
+      </form>
+	  
+  </div>
+  <div class="goods-nav clearfix" id="goodNavigator">
+  <form method="GET" class="sort" name="listform"> 
+	 <ul>
+    <select name="sort" style="border:1px solid #ccc;">
+ 
+        {html_options options=$lang.exchange_sort selected=$pager.sort}
+        
+    </select>
+    <select name="order" style="border:1px solid #ccc;">
+      
+        {html_options options=$lang.order selected=$pager.order}
+        
+    </select>
+	</ul>
+	
+	 <ul class="pageview">
+          <li 
+          <!-- {if $pager.display == 'grid'} -->
+          class="on"
+          <!-- {/if} -->
+          > <a class="pageview-p" href="javascript:;"  onClick="javascript:display_mode('grid')"> 大图 </a>
+          </li>
+          <li 
+          <!-- {if $pager.display == 'list'} -->
+          class="on"
+          <!-- {/if} -->
+          > <a class="pageview-l" href="javascript:;" onClick="javascript:display_mode('list')"> 列表 </a>
+          </li>
+        </ul>
+    <input type="image" name="imageField" src="../images/bnt_go.gif" alt="go"/>
+    <input type="hidden" name="category" value="{$category}" />
+    <input type="hidden" name="display" value="{$pager.display}" id="display" />
+    <input type="hidden" name="integral_min" value="{$integral_min}" />
+    <input type="hidden" name="integral_max" value="{$integral_max}" />
+    <input type="hidden" name="page" value="{$pager.page}" />
+  </form>
+ 
+
+  </div>
+  </div>
+  
+  
+  
+  <form name="compareForm" method="post">
+ <div class="goods-list" id="goodsList">
+    <!-- {if $pager.display == 'grid'} -->
+    <ul class="piclist">
+      <!--{foreach from=$goods_list item=goods}-->
+      <!-- {if $goods.goods_id} -->
+      <li id="goods_id_{$goods.goods_id}" >
+        <dl>
+          <dt> <a class="pimg" target="_blank" href="{$goods.url}"><img width="110" height="180" alt="{$goods.goods_name}" src="{$goods.goods_thumb}"></a>
+            <p class="promo-icon">
+              <!--{if $goods.is_new neq 0 OR $goods.is_best neq 0 OR $goods.is_hot neq 0}-->
+              <ins class=""><em>
+              <!--{if $goods.is_new neq 0}-->
+              新品
+              <!--{elseif $goods.is_best neq 0}-->
+              精品
+              <!--{elseif $goods.is_hot neq 0}-->
+              热卖
+              <!--{/if}-->
+              </em></ins>
+              <!--{/if}-->
+            </p>
+          </dt>
+          <dd class="base"> <a title="{$goods.goods_name}" class="pname" target="_blank" href="{$goods.url}"> {$goods.name} </a>
+            <p class="price"> <span class="minprice">积分：<strong>
+          {$goods.exchange_integral}
+              </strong> </span></p>
+          </dd>
+          <dd class="sum"> <span class="ratecount">评分<strong>{$goods.ratenum}</strong></span> <span class="commentcount">评论<strong>{$goods.number}</strong></span> <span class="soldnum">售出<strong>{$goods.soldnum}</strong></span> </dd>
+          <dd class="slogan">
+            <p>{$goods.brief}</p>
+          </dd>
+          <dd class="action">
+            <p> <a class="btn-small btn-add2cart" href="javascript:addToCart({$goods.goods_id})" ><em>立即兑换</em></a> </p>
+          </dd>
+        </dl>
+      </li>
+      <!--{/if}-->
+      <!--{/foreach}-->
+    </ul>
+    <!-- {elseif $pager.display == 'list'} -->
+    <ul class="prodlist">
+      <!--{foreach name=goods_list from=$goods_list item=goods}-->
+	
+      <li id="goods_id_{$goods.goods_id}">
+	   
+        <dl>
+          <dt> <a class="pimg" target="_blank" href="{$goods.url}"><img width="110" height="180" alt="{$goods.goods_name}" src="{$goods.goods_thumb}"></a>
+            <p class="promo-icon">
+              <!--{if $goods.is_new neq 0 OR $goods.is_best neq 0 OR $goods.is_hot neq 0}-->
+              <ins class=""><em>
+              <!--{if $goods.is_new neq 0}-->
+              新品
+              <!--{elseif $goods.is_best neq 0}-->
+              精品
+              <!--{elseif $goods.is_hot neq 0}-->
+              热卖
+              <!--{/if}-->
+              </em></ins>
+              <!--{/if}-->
+            </p>
+          </dt>
+          <dd class="base"> <a title="{$goods.goods_name}" class="pname" target="_blank" href="{$goods.url}"> {$goods.goods_name} </a>
+            <p class="price"> <span class="minprice">积分：<strong>
+           {$goods.exchange_integral}
+              </strong> </span> </p>
+          </dd>
+          <dd class="sum"> <span class="ratecount">评分<strong>{$goods.ratenum}</strong></span> <span class="commentcount">评论<strong>{$goods.number}</strong></span> <span class="soldnum">售出<strong>{$goods.soldnum}</strong></span> </dd>
+          <dd class="info">
+            <ol>
+			<!-- {foreach from=$goods.properties_pro item=properties_pro} --><li>[{$properties_pro.name}] {$properties_pro.value}</li><!-- {/foreach} -->
+            </ol>
+          </dd>
+          <dd class="slogan">
+            <p>{$goods.brief}</p>
+          </dd>
+
+          <dd class="action" style="top:70px;">
+            <p class="count">
+              
+            <p> <a class="btn-small btn-add2cart" href="javascript:addToCartMultiple({$goods.goods_id})" ><em>立即兑换</em></a> </p>
+          </dd>
+        </dl>
+      </li>
+      <!--{/foreach}-->
+    </ul>
+    <!--{/if}-->
+  </div>
+  </form>
+</div>
+</div>
+</div>
+
+<script type="text/javascript">
+  window.onload = function()
+  {
+    Compare.init();
+    fixpng();
+  }
+  var button_compare = '';
+</script>

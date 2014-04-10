@@ -1,0 +1,40 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="cartAdd" id='history_div'>
+  <h1> <a href="javascript:void(0);" id="myBrowse"><img src="images/jia.gif" id="img1">我浏览的商品</a> </h1>
+  <span  style="display: block;">
+  <ul style="display:none;" id="history_list">
+    {insert name='history_flow'}
+  </ul>
+  </span>
+  <div style="clear: both; height: 0px; overflow: hidden;"></div>
+</div>
+<script type="text/javascript">
+$("#myBrowse").click(function(){
+	$("#myBrowseBox").toggle();
+	if($("img#img1").attr("src") == "themes/yesmywine/images/jia.gif")
+	{
+		$("img#img1").attr("src","themes/yesmywine/images/fu.gif");
+	}
+	else
+	{
+		$("img#img1").attr("src","themes/yesmywine/images/jia.gif");
+	}
+				  
+})
+if (document.getElementById('history_list').innerHTML.replace(/\s/g,'').length<1)
+{
+    document.getElementById('history_div').style.display='none';
+}
+else
+{
+    document.getElementById('history_div').style.display='block';
+}
+function clear_history()
+{
+Ajax.call('user.php', 'act=clear_history',clear_history_Response, 'GET', 'TEXT',1,1);
+}
+function clear_history_Response(res)
+{
+document.getElementById('history_list').innerHTML = '{$lang.no_history}';
+}
+</script>

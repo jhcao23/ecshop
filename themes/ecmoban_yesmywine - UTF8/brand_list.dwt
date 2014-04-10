@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+<link href="style_default.css" rel="stylesheet" type="text/css" />
+{* 包含脚本文件 *}
+{insert_scripts files='jquery-1.9.1.min.js,jquery.json.js'}
+{insert_scripts files='common.js,global.js,compare.js'}
+</head>
+<body>
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+<div class="wrapper e-imageload" id="allbrand">
+  <div class="content">
+    <div class="goods">
+      <div class="goods-title">
+        <div class="goods-tab clearfix">
+          <ul>
+            <li class="all on"><a href="javascript:;">全部品牌</a></li>
+          </ul>
+        </div>
+        <div  class="goods-nav clearfix">
+          <ul>
+            <!-- {foreach from=$brand_list name="brand_list_foreach" item=brand_data} -->
+            <li><span class="b-img"><a target="_blank" href="{$brand_data.url}"><img width="80" height="40" alt="{$brand_data.brand_name|escape:html}" src="data/brandlogo/{$brand_data.brand_logo}"></a></span><span class="b-name"><a target="_blank" href="{$brand_data.url}" style="font-weight:bold">{$brand_data.brand_name}</a></span></li>
+            <!-- {/foreach} -->
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="footer" id="footer">
+  <div class="foot-main"> <!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem --> </div>
+  <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem --> </div>
+</body>
+</html>

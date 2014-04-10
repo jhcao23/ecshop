@@ -1,0 +1,75 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!--底部导航 start-->
+<div class="foot-nav">
+  <!-- {if $navigator_list.bottom} -->
+  <!-- {foreach name=nav_bottom_list from=$navigator_list.bottom item=nav} -->
+  <a 
+  <!-- {if $nav.opennew eq 1} -->
+  target="_blank"
+  <!-- {/if} -->
+  href="{$nav.url}">{$nav.name}</a>
+  <!-- {if !$smarty.foreach.nav_bottom_list.last} -->
+  <span class="sep">|</span>
+  <!-- {/if} -->
+  <!-- {/foreach} -->
+  <!-- {/if} -->
+</div>
+<!--底部导航 end-->
+<!--友情链接 start-->
+<!--{if $img_links  or $txt_links }-->
+<div class="foot-links">
+  <h5>友情链接：</h5>
+  <p>
+    <!-- {if $txt_links} -->
+    <!--开始文字类型的友情链接{foreach from=$txt_links item=link}-->
+    <a target="_blank" title="好买基金网" href="{$link.url}" title="{$link.name}">{$link.name}</a>
+    <!--结束文字类型的友情链接{/foreach}-->
+    <!-- {/if} -->
+    <span onclick="$('.foot-links').toggleClass('foot-links-show');" class="btn-more"></span> 
+</div>
+<!--{/if}-->
+<!--友情链接 end-->
+<div class="foot-license">
+  <!-- 客服电话{if $service_phone} -->
+  <span>Tel: {$service_phone}</span>
+  <!-- 结束客服电话{/if} -->
+  <!-- 邮件{if $service_email} -->
+  <span>E-mail: {$service_email}</span>
+  <!-- 结束邮件{/if} -->
+  <!-- QQ 号码 {foreach from=$qq item=im} -->
+  <!-- {if $im} -->
+  <span><a href="http://wpa.qq.com/msgrd?V=1&amp;Uin={$im}&amp;Site={$shop_name}&amp;Menu=yes" target="_blank"><img src="http://wpa.qq.com/pa?p=1:{$im}:4" height="16" border="0" alt="QQ" />{$im}</a></span>
+  <!-- {/if} -->
+  <!-- {/foreach} 结束QQ号码 -->
+  <!-- 淘宝旺旺 {foreach from=$ww item=im} -->
+  <!-- {if $im} -->
+  <span><a href="http://amos1.taobao.com/msg.ww?v=2&uid={$im|escape:u8_url}&s=2" target="_blank"><img src="http://amos1.taobao.com/online.ww?v=2&uid={$im|escape:u8_url}&s=2" width="16" height="16" border="0" alt="淘宝旺旺" />{$im}</a></span>
+  <!-- {/if} -->
+  <!--{/foreach} 结束淘宝旺旺 -->
+  <!-- Yahoo Messenger {foreach from=$ym item=im} -->
+  <!-- {if $im} -->
+  <span> <a href="http://edit.yahoo.com/config/send_webmesg?.target={$im}n&.src=pg" target="_blank"><img src="../images/yahoo.gif" width="18" height="17" border="0" alt="Yahoo Messenger" /> {$im}</a></span>
+  <!-- {/if} -->
+  <!-- {/foreach} 结束Yahoo Messenger -->
+  <!-- MSN Messenger {foreach from=$msn item=im} -->
+  <!-- {if $im} -->
+  <span><img src="../images/msn.gif" width="18" height="17" border="0" alt="MSN" /> <a href="msnim:chat?contact={$im}">{$im}</a></span>
+  <!-- {/if} -->
+  <!-- {/foreach} 结束MSN Messenger -->
+  <!-- Skype {foreach from=$skype item=im} -->
+  <!-- {if $im} -->
+  <span> <img src="http://mystatus.skype.com/smallclassic/{$im|escape:url}" alt="Skype" /><a href="skype:{$im|escape:url}?call">{$im}</a></span>
+  <!-- {/if} -->
+  <!-- {/foreach} -->
+</div>
+<div class="foot-copyright"> {$copyright} <span class="sep">|</span>
+  <!-- ICP 证书{if $icp_number} -->
+  <a style="color:#999" target="_blank" href="http://www.miibeian.gov.cn/"> {$icp_number} </a>
+  <!-- 结束ICP 证书{/if} -->
+  <br>
+  <div align="center" style="padding-bottom:15px; margin-top:10px;" ><a href=" http://www.ecmoban.com" target="_blank"> <img src="../images/ecmoban.gif" /></a></div>
+  <a target="_blank" href="#" id="___szfw_logo___"><img width="112" height="40" align="absmiddle" src="images/chengxin.png"></a>
+  <script type="text/javascript">(function(){document.getElementById('___szfw_logo___').oncontextmenu = function(){return false;}})();
+ </script>
+</div>
+  

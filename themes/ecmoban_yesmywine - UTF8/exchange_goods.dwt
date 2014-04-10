@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+{* 包含脚本文件 *}
+{insert_scripts files='common.js'}
+<script type="text/javascript">
+function $id(element)
+{
+  return document.getElementById(element);
+}
+//切屏--是按钮，_v是内容平台，_h是内容库
+function reg(str)
+{
+  var bt=$id(str+"_b").getElementsByTagName("h2");
+
+  for(var i=0;i<bt.length;i++)
+  {
+    bt[i].subj=str;
+    bt[i].pai=i;
+    bt[i].style.cursor="pointer";
+
+    bt[i].onclick=function()
+    {
+      $id(this.subj+"_v").innerHTML=$id(this.subj+"_h").getElementsByTagName("blockquote")[this.pai].innerHTML;
+
+      for(var j=0;j<$id(this.subj+"_b").getElementsByTagName("h2").length;j++)
+      {
+        var _bt=$id(this.subj+"_b").getElementsByTagName("h2")[j];
+        var ison=j==this.pai;
+        _bt.className=(ison?"":"h2bg");
+      }
+    }
+  }
+
+  $id(str+"_h").className="none";
+  $id(str+"_v").innerHTML=$id(str+"_h").getElementsByTagName("blockquote")[0].innerHTML;
+}
+
+</script>
+</head>
+<body>
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+{insert_scripts files='yesmywine_ecchange.js'}
+<div class="content default_wrapper">
+  <!--当前位置 start-->
+  <!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem -->
+  <!--当前位置 end-->
+  <div class="promotion clearfix ">
+    <div class="promotionPic"> <!-- #BeginLibraryItem "/library/goods_gallery.lbi" --><!-- #EndLibraryItem -->
+      <div id="pro_infor">
+        <div id="image_box" style="position: relative;"> <a class="MagicZoom" href="{$goods.original_img}" > <img width="220" height="360" alt="" src="{$goods.goods_img}" title=""> </a> </div>
+      </div>
+    </div>
+    <div class="promotionMiddle">
+      <div class="promotionMiddleTop">
+        <h1>{$goods.goods_style_name}</h1>
+
+        <span><strong>商品货号：</strong>{$goods.goods_sn}</span>
+
+        <ul>
+       
+          <li>商品重量：<b class="rmbPrice">{$goods.goods_weight}</b></li>
+		  <!-- {if $goods.goods_brand} -->
+<li>商品品牌：<b class="rmbPrice">{$goods.goods_brand}</b></li>
+         <!-- {/if} -->
+		         <li>消耗积分：<b class="rmbPrice">{$goods.exchange_integral}</b></li>
+        </ul>
+      </div>
+      <!--{if $goods.goods_brief neq null}-->
+      <div class="promotionMiddleAct"> · {$goods.goods_brief}</div>
+      <!--{/if}-->
+          <form action="exchange.php?act=buy" method="post" name="ECS_FORMBUY" id="ECS_FORMBUY" >
+        <div id="proChange1" class="promotionMiddleKey">
+          <div id="proChange2" class="promotionMiddleKeyN">
+            <ul>
+              <!-- {* 开始循环所有可选属性 *} -->
+              <!-- {foreach from=$specification item=spec key=spec_key} -->
+              <li><span>{$spec.name}：</span>
+                <!-- {if $spec.attr_type eq 1} -->
+                <p class="year">
+                  <!-- {foreach from=$spec.values item=value key=key} -->
+                  <a {if $key eq 0}class="on"{/if} onclick="changeAtt(this)" href="javascript:;" name="{$value.id}" title="[{if $value.price gt 0}{$lang.plus}{elseif $value.price lt 0}{$lang.minus}{/if} {$value.format_price|abs}]"><ins></ins>{$value.label}
+                  <input style="display:none" id="spec_value_{$value.id}" type="radio" name="spec_{$spec_key}" value="{$value.id}" {if $key eq 0}checked{/if} /></a>
+                  <!-- {/foreach} -->
+                </p>
+                <input type="hidden" name="spec_list" value="{$key}" />
+                <!-- {else} -->
+                <p class="year">
+                  <!-- {foreach from=$spec.values item=value key=key} -->
+                  <a onclick="changeAtt(this)"  href="javascript:;" name="{$value.id}" title="[{if $value.price gt 0}{$lang.plus}{elseif $value.price lt 0}{$lang.minus}{/if} {$value.format_price|abs}]"><ins></ins>{$value.label}
+                  <input type="checkbox" style="display:none"  name="spec_{$spec_key}"  value="{$value.id}"  id="spec_value_{$value.id}" /></a>
+                  <!-- {/foreach} -->
+                </p>
+                <input type="hidden" name="spec_list" value="{$key}" />
+                <!-- {/if} -->
+              </li>
+              <!-- {/foreach} -->
+			  
+              <!-- {* 结束循环可选属性 *} -->
+              <li id="online-getWineNum"> <span id="ECS_GOODS_AMOUNT"></span></li>
+			  <input type="hidden" name="goods_id" value="{$goods.goods_id}" />
+              <li id="buttonContainer" style="margin-top:20px;"><input type="submit" value="{$lang.exchange_goods}"  class="bnt_blue_1" /></li>
+              <!--{if $goods.is_promote and $goods.gmt_end_time } 促销-->
+              <li class="endtime time" value="{$promote_end_time}"></li>
+              <!--{/if}-->
+            </ul>
+          </div>
+        </div>
+          
+            
+      </form>
+    </div>
+    
+  </div>
+  <div class="clear"></div>
+  <div class="proDetails"> <a name="xiangqingTop">&nbsp;</a>
+    <h3><a class="hover">商品详情</a></h3>
+    <div class="clear"></div>
+    <div class="xiangqing">
+      <ul>
+        <!-- {foreach from=$properties item=property_group key=key} -->
+        <!-- {foreach from=$property_group item=property} -->
+        <li><span><b>{$property.name|escape:html}</b>{$property.value}</span></li>
+        <!-- {/foreach}-->
+        <!-- {/foreach}-->
+      </ul>
+    </div>
+    <div class="property_ap"> <!-- TemplateBeginEditable name="商品属性下广告"--> <!-- #BeginLibraryItem "/library/ad_position.lbi" --> {insert name='ads' id=$ads_id num=$ads_num} <!-- #EndLibraryItem --> <!-- TemplateEndEditable --> </div>
+    <div class="proContent"> {$goods.goods_desc} </div>
+  </div>
+</div>
+
+
+
+<div class="content mb20">
+	<div style="display: none;" class="mod-prodlist-c5 mt10 pd-recommend-buy">
+	</div>
+	<!-- #BeginLibraryItem "/library/goods_attrlinked.lbi" --> <!-- #EndLibraryItem -->
+	<!-- #BeginLibraryItem "/library/goods_related.lbi" --><!-- #EndLibraryItem -->
+
+</div>
+<div class="footer" id="footer">
+	<div class="foot-main"> 
+	 <!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem -->
+	</div>
+	<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+	</div>
+<div id="black_bg"></div>
+</body>
+
+<script type="text/javascript">
+<!-- {literal} -->
+onload = function()
+{
+  fixpng();
+}
+<!-- {/literal} -->
+</script>
+</html>

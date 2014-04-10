@@ -1,0 +1,84 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+{insert_scripts files='jquery-1.9.1.min.js,jquery.json.js,jquery.Xslider.js,jquery.SuperSlide.js,tab.lib.js,yesmywine_common.js'}
+{insert_scripts files='transport.js,utils.js'}
+<div class="header" id="header">
+  <!--顶部登陆注册我的账户 start-->
+  <div class="head-bar">
+    <div class="site-bar">
+      <ul class="userinfos" id="ECS_MEMBERZONE">
+        {* ECSHOP 提醒您：根据用户id来调用member_info.lbi显示不同的界面  *}{insert name='member_info'}
+      </ul>
+      <ul class="sitelinks">
+        <li class="dropdown myaccount"> <a class="txt-down" href="user.php">我的账户</a>
+          <ul>
+            <li><a href="user.php?act=order_list">我的订单<em></em></a></li>
+            <li><a href="user.php?act=message_list">我的留言<em></em></a></li>
+            <li><a href="user.php?act=comment_list">我的评论<em></em></a></li>
+            <li><a href="user.php?act=collection_list">我的收藏<em></em></a></li>
+          </ul>
+          <b class="arrow-top"></b> </li>
+        <!--{if $navigator_list.top}-->
+        <!-- {foreach name=nav_top_list from=$navigator_list.top item=nav} -->
+        <li class="bldr"><a href="{$nav.url}" <!-- {if $nav.opennew eq 1} --> target="_blank" <!-- {/if} -->>{$nav.name}</a></li>
+        <!-- {/foreach} -->
+        <!-- {/if} -->
+      </ul>
+    </div>
+  </div>
+  <!--顶部登陆注册我的账户 end-->
+  <div class="head-main">
+    <!--logo start-->
+    <div class="head-logo"> <a class="logo-site" href="index.php">也买酒</a> </div>
+    <!--logo end-->
+    <!--搜索框 start-->
+    <div class="head-search">
+      <form id="searchForm" name="searchForm" method="get" action="search.php" onSubmit="return checkSearchForm()" >
+        <input name="keywords" type="text" id="keyword" value="{$search_keywords|escape}" class="txt-keyword" />
+        <input name="imageField" type="submit"  value="搜索" class="btn-search">
+      </form>
+    
+      <p>
+        <script type="text/javascript">
+    {literal}
+    <!--
+    function checkSearchForm()
+    {
+        if(document.getElementById('keyword').value)
+        {
+            return true;
+        }
+        else
+        {
+            alert("{$lang.no_keywords}");
+            return false;
+        }
+    }
+    -->
+    {/literal}
+    </script>
+        {if $searchkeywords}
+        
+        {foreach from=$searchkeywords item=val} <a target="_blank" title="{$val}" href="search.php?keywords={$val|escape:url}">{$val}</a> {/foreach}
+        {/if} </p>
+    </div>
+	  <!--搜索框 end-->
+
+  </div>
+  
+  <!--顶部分类树 start-->
+  <div class="head-nav">
+    <div class="site-nav">
+      <ul style="overflow:hidden" class="navlinks">
+        <li {if $navigator_list.config.index eq 1} class="on"{/if}><a href="../index.php" >{$lang.home}</a></li>
+        <!-- {foreach name=nav_middle_list from=$navigator_list.middle item=nav} -->
+        <li {if $nav.active eq 1} class="on"{/if}><a href="{$nav.url}" {if $nav.opennew eq 1}target="_blank" {/if} >{$nav.name}</a></li>
+        <!-- {/foreach} -->
+      </ul>
+      <div class="categorys">
+        <h3><a target="_blank" href="index.php">选酒中心</a><b class="arrow"></b></h3>
+        <div class="categroup"> {include file='library/category_tree.lbi'} </div>
+      </div>
+    </div>
+  </div>
+  <!--顶部分类树 end-->
+</div>

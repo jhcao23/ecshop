@@ -1,0 +1,86 @@
+@charset "utf-8";
+.box_1 {line-height:23px;}
+.box_1 .userCenterBox .userMenu .h3{ background:#624B40;  height:30px; line-height:30px; color:#FFF; font-family:"微软雅黑"; font-weight:bold; padding-left:10px; text-align:left; font-size:14px;}
+.box_1 .userCenterBox .userMenu .h3 a{ color:#FFFFFF}
+
+.box_1 .userCenterBox .userMenu h1{ height:29px; line-height:29px; cursor:pointer;background:#f1f1f1; font-size:12px; font-weight:bold;   }
+.box_1 .userCenterBox .userMenu h1 span{ float:left; padding-left:10px;}
+.box_1 .userCenterBox .userMenu h1 img{ float:right; padding:5px; }
+.box_1 .userCenterBox .userMenu ul { padding:6px 0; *padding-bottom:0px;}
+.box_1 .userCenterBox .userMenu ul a{ display:block; height:24px; line-height:24px; padding-left:20px;}
+.box_1 .userCenterBox .userMenu a.curs{ color:#f54803}
+
+.AreaL {
+    float: left;
+    width: 210px;
+}
+.block950 {
+	margin:0 auto;
+    height: auto;
+    width: 1200px;
+}
+.s950 .block950 {
+    height: auto;
+    width: 960px;
+}
+
+.box_1 .f_l {
+    float: left;
+}
+
+.box_1 .f_r {
+    float: right;
+}
+
+
+.s950 .AreaR {
+    width: 740px;
+}
+.AreaR {
+	   float: right;
+    overflow: hidden;
+    width: 979px;
+}
+
+.box_1 {
+    background-color: #FFFFFF;
+    border: 1px solid #DDDDDD;
+}
+.boxCenterList {
+    padding: 8px;
+}
+
+.AreaL h5 {
+    background-color: #F6F6F6;
+    color: #DD0000;
+   font-size: 12px;
+    height: 32px;
+    line-height: 32px;
+    padding: 0 10px 0 0;
+
+}
+
+h5 span {
+
+    font-weight: bold;
+    padding-left: 15px;
+}
+
+TABLE {
+    empty-cells: show;
+}
+.bnt_blue_1 {
+    background: url(images/bg_user.gif) no-repeat scroll 0 -663px transparent;
+    color: #FFFFFF;
+    cursor: pointer;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    width: 77px;
+}
+tr {line-height:35px;}
+table{border-collapse:separate; border-spacing:1px;}
+.box_1 .f5 {
+    font-size: 14px;
+    font-weight: bold;
+}

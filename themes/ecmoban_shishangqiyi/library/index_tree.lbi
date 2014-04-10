@@ -1,0 +1,38 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+
+<div class="tit1" style="padding-top:8px;">
+<span>
+热门分类
+</span>
+</div>
+
+<div class="blank"></div>
+
+
+
+
+
+
+<div id="category_tree_index" class="box_1 clearfix">
+ <!--{foreach from=$categories item=cat name=no}-->
+   <!-- {if $smarty.foreach.no.iteration<5}-->
+ 
+ 
+     <dl>
+     <dt class="dt{$smarty.foreach.no.iteration}"><a href="{$cat.url}">{$cat.name|escape:html}</a></dt>
+     <dd class="clearfix">
+    
+     <!--{foreach from=$cat.cat_id item=child}--><a href="{$child.url}">{$child.name|escape:html}</a>
+     
+     <!--{foreach from=$child.cat_id item=childer}-->
+     <a href="{$childer.url}">{$childer.name|escape:html}</a>
+     <!--{/foreach}-->
+     <!--{/foreach}-->
+     </dd>
+   
+     </dl>
+       
+     <!--{/if}-->    
+    <!--{/foreach}--> 
+</div>

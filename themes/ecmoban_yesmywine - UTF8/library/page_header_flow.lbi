@@ -1,0 +1,37 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+{insert_scripts files='jquery-1.9.1.min.js,jquery.json.js,jquery.Xslider.js,jquery.SuperSlide.js,tab.lib.js,yesmywine_common.js'}
+{insert_scripts files='transport.js,utils.js'}
+<div class="header" id="header">
+  <!--顶部登陆注册我的账户 start-->
+  <div class="head-bar">
+    <div class="site-bar">
+      <ul class="userinfos" id="ECS_MEMBERZONE">
+        {* ECSHOP 提醒您：根据用户id来调用member_info.lbi显示不同的界面  *}{insert name='member_info'}
+      </ul>
+      <ul class="sitelinks">
+        <li class="dropdown myaccount"> <a class="txt-down" href="user.php">我的账户</a>
+          <ul>
+            <li><a href="user.php?act=order_list">我的订单<em></em></a></li>
+            <li><a href="user.php?act=message_list">我的留言<em></em></a></li>
+            <li><a href="user.php?act=comment_list">我的评论<em></em></a></li>
+            <li><a href="user.php?act=collection_list">我的收藏<em></em></a></li>
+          </ul>
+          <b class="arrow-top"></b> </li>
+        <!--{if $navigator_list.top}-->
+        <!-- {foreach name=nav_top_list from=$navigator_list.top item=nav} -->
+        <li class="bldr"><a href="{$nav.url}" <!-- {if $nav.opennew eq 1} --> target="_blank" <!-- {/if} -->>{$nav.name}</a></li>
+        <!-- {/foreach} -->
+        <!-- {/if} -->
+      </ul>
+    </div>
+  </div>
+  <!--顶部登陆注册我的账户 end-->
+  <div class="head-main">
+    <!--logo start-->
+    <div class="head-logo"> <a class="logo-site" href="index.php">也买酒</a> </div>
+    <!--logo end-->
+   
+  </div>
+  
+ 
+</div>

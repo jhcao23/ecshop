@@ -1,0 +1,72 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+ 
+ 
+    
+    
+  <div id="category_tree">
+  <div class="tit">所有商品分类</div>
+  <dl class="clearfix" >
+   <div class="box1 cate" id="cate">
+<!--{foreach from=$categories item=cat name=no}-->
+		<h1 onclick="tab({$smarty.foreach.no.index})"  
+		
+		
+		<!-- {if $smarty.foreach.no.first} -->
+        style="border-top:none"
+        <!-- {/if} --> 
+		 
+		
+		
+		>
+		
+		 		
+		<span class="f_l"><img src="images/btn_unfold.gif" style="padding-top:10px;padding-right:6px;cursor:pointer;"></span>
+		<a href="{$cat.url}" class="  f_l">{$cat.name|escape:html}</a>
+
+		</h1>
+		<ul style="display:none" >
+		<!--{foreach from=$cat.cat_id item=child}-->
+		 <a class="over_2" href="{$child.url}">{$child.name|escape:html}</a>  
+		 
+<div class="clearfix">
+<!--{foreach from=$child.cat_id item=childer}-->
+<a class="over_3" href="{$childer.url}">{$childer.name|escape:html}</a>
+<!--{/foreach}-->
+</div>   
+		<!--{/foreach}-->
+		</ul>
+		<div style="clear:both"></div>
+	<!--{/foreach}--> 
+</div>
+</dl>
+</div>
+<div class="blank"></div>
+
+
+
+
+
+
+
+
+
+ 
+<script type="text/javascript">
+obj_h4 = document.getElementById("cate").getElementsByTagName("h4")
+obj_ul = document.getElementById("cate").getElementsByTagName("ul")
+obj_img = document.getElementById("cate").getElementsByTagName("img")
+function tab(id)
+{ 
+		if(obj_ul.item(id).style.display == "none")
+		{
+			obj_ul.item(id).style.display = " block"
+			obj_img.item(id).src = "images/btn_fold.gif"
+			return false;
+		}
+		else(obj_ul.item(id).style.display == "block")
+		{
+			obj_ul.item(id).style.display = "none"
+			obj_img.item(id).src = "images/btn_unfold.gif"
+		}
+}
+</script>

@@ -1,0 +1,249 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+{* 包含脚本文件 *}
+{insert_scripts files='jquery-1.9.1.min.js,jquery.json.js'}
+{insert_scripts files='utils.js,common.js,global.js,compare.js'}
+</head>
+<body>
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+<div class="wrapper e-imageload">
+  <div class="content">
+	<!--当前位置 start-->
+	<!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem -->
+	<!--当前位置 end-->
+	 <div class="goods">
+  <!-- begin of 商品导航条 -->
+  <div class="goods-title">
+    <div class="goods-tab clearfix">
+      <ul>
+        <li class="all on"><a href="javascript:;">全部</a></li>
+      </ul>
+      <form name="selectPageForm" action="{$smarty.server.PHP_SELF}" method="get">
+        <div class="goods-page-min"> <span>共有<strong>{$pager.record_count}</strong>件商品</span>
+          <label>{$pager.page}/{$pager.page_count}</label>
+          <!-- {if $pager.page eq 1} -->
+          <a class="prev disabled" href="javascript:;">{$lang.page_prev}</a>
+          <!--{else}-->
+          <a class="prev" href="{$pager.page_prev}">{$lang.page_prev}</a>
+          <!--{/if}-->
+          <!-- {if $pager.page >=  $pager.page_count} -->
+          <a class="next disabled" href="javascript:;">{$lang.page_prev}</a>
+          <!--{else}-->
+          <a class="next" href="{$pager.page_next}">{$lang.page_next}</a>
+          <!--{/if}-->
+          </a> </div>
+      </form>
+    </div>
+	
+	
+    <div class="goods-nav clearfix" id="goodNavigator">
+             <form action="search.php" method="post" class="sort" name="listform" id="form">
+        <ul>
+           <select name="sort">
+              {html_options options=$lang.sort selected=$pager.search.sort}
+              </select>
+              <select name="order">
+              {html_options options=$lang.order selected=$pager.search.order}
+              </select>
+			   <input type="image" name="imageField" src="../images/bnt_go.gif" alt="go"/>
+              <input type="hidden" name="page" value="{$pager.page}" />
+              <input type="hidden" name="display" value="{$pager.display}" id="display" />
+			   <!--{foreach from=$pager.search key=key item=item}-->
+              {if $key neq "sort" and $key neq "order"}
+                {if $key eq 'keywords'}
+                  <input type="hidden" name="{$key}" value="{$item|escape:decode_url}" />
+                {else}
+                  <input type="hidden" name="{$key}" value="{$item}" />
+                {/if}
+              {/if}
+              <!--{/foreach}-->
+        </ul>
+        <ul class="pageview">
+          <li 
+          <!-- {if $pager.display == 'grid'} -->
+          class="on"
+          <!-- {/if} -->
+          > <a class="pageview-p" href="javascript:;"  onClick="javascript:display_mode('grid')"> 大图 </a>
+          </li>
+          <li 
+          <!-- {if $pager.display == 'list'} -->
+          class="on"
+          <!-- {/if} -->
+          > <a class="pageview-l" href="javascript:;" onClick="javascript:display_mode('list')"> 列表 </a>
+          </li>
+        </ul>
+		
+		<a class="returntop" href="#top" style="display: none;">返回顶部</a>
+
+      </form>
+    </div>
+
+  </div>
+  <!--end -->
+  
+  
+   <!-- {if $goods_list} -->
+  <!-- begin of 商品列表 -->
+  <a name="a_goods_top"></a>
+  <div class="goods-list" id="goodsList">
+    <!-- {if $pager.display == 'grid'} -->
+    <ul class="piclist">
+      <!--{foreach from=$goods_list item=goods}-->
+      <!-- {if $goods.goods_id} -->
+      <li id="goods_id_{$goods.goods_id}" >
+        <dl>
+          <dt> <a class="pimg" target="_blank" href="{$goods.url}"><img width="110" height="180" alt="{$goods.goods_name}" src="{$goods.goods_thumb}"></a>
+            <p class="promo-icon">
+              <!--{if $goods.is_new neq 0 OR $goods.is_best neq 0 OR $goods.is_hot neq 0}-->
+              <ins class=""><em>
+              <!--{if $goods.is_new neq 0}-->
+              新品
+              <!--{elseif $goods.is_best neq 0}-->
+              精品
+              <!--{elseif $goods.is_hot neq 0}-->
+              热卖
+              <!--{/if}-->
+              </em></ins>
+              <!--{/if}-->
+            </p>
+          </dt>
+          <dd class="base"> <a title="{$goods.goods_name}" class="pname" target="_blank" href="{$goods.url}"> {$goods.name} </a>
+            <p class="price"> <span class="minprice">¥<strong>
+              <!--{if $goods.promote_price neq "" } -->
+              {$goods.promote_price}
+              <!--{else}-->
+              {$goods.shop_price}
+              <!--{/if}-->
+              </strong> </span> <span class="maxprice"><del>
+              <!-- {if $show_marketprice} -->
+              ¥{$goods.market_price}
+              <!-- {/if} -->
+              </del></span> </p>
+          </dd>
+          <dd class="sum"> <span class="ratecount">评分<strong>{$goods.ratenum}</strong></span> <span class="commentcount">评论<strong>{$goods.number}</strong></span> <span class="soldnum">售出<strong>{$goods.soldnum}</strong></span> </dd>
+          <dd class="slogan">
+            <p>{$goods.brief}</p>
+          </dd>
+          <dd class="action">
+            <p> <a class="btn-small btn-add2cart" href="javascript:addToCart({$goods.goods_id})" ><em>加入购物车</em></a> </p>
+          </dd>
+        </dl>
+      </li>
+      <!--{/if}-->
+      <!--{/foreach}-->
+    </ul>
+    <!-- {elseif $pager.display == 'list'} -->
+    <ul class="prodlist">
+      <!--{foreach name=goods_list from=$goods_list item=goods}-->
+	
+      <li id="goods_id_{$goods.goods_id}">
+	   
+        <dl>
+          <dt> <a class="pimg" target="_blank" href="{$goods.url}"><img width="110" height="180" alt="{$goods.goods_name}" src="{$goods.goods_thumb}"></a>
+            <p class="promo-icon">
+              <!--{if $goods.is_new neq 0 OR $goods.is_best neq 0 OR $goods.is_hot neq 0}-->
+              <ins class=""><em>
+              <!--{if $goods.is_new neq 0}-->
+              新品
+              <!--{elseif $goods.is_best neq 0}-->
+              精品
+              <!--{elseif $goods.is_hot neq 0}-->
+              热卖
+              <!--{/if}-->
+              </em></ins>
+              <!--{/if}-->
+            </p>
+          </dt>
+          <dd class="base"> <a title="{$goods.goods_name}" class="pname" target="_blank" href="{$goods.url}"> {$goods.goods_name} </a>
+            <p class="price"> <span class="minprice">¥<strong>
+              <!--{if $goods.promote_price neq "" } -->
+              {$goods.promote_price}
+              <!--{else}-->
+              {$goods.shop_price}
+              <!--{/if}-->
+              </strong> </span> <span class="maxprice"><del>
+              <!-- {if $show_marketprice} -->
+              ¥{$goods.market_price}
+              <!-- {/if} -->
+              </del></span> </p>
+          </dd>
+          <dd class="sum"> <span class="ratecount">评分<strong>{$goods.ratenum}</strong></span> <span class="commentcount">评论<strong>{$goods.number}</strong></span> <span class="soldnum">售出<strong>{$goods.soldnum}</strong></span> </dd>
+          <dd class="info">
+            <ol>
+			<!-- {foreach from=$goods.properties_pro item=properties_pro} --><li>[{$properties_pro.name}] {$properties_pro.value}</li><!-- {/foreach} -->
+            </ol>
+          </dd>
+          <dd class="slogan">
+            <p>{$goods.brief}</p>
+          </dd>
+          <dd class="action">
+            <p class="count">
+              <label>数&nbsp;&nbsp;量：</label>
+              <a class="btn-down" href="javascript:;" onClick="number_down({$goods.goods_id})">-</a>
+              <input type="text" value="1"  class="txt-prodcount" name="goods_number" style="ime-mode: disabled;">
+              <a class="btn-up" href="javascript:;" onClick="number_up({$goods.goods_id})">+</a> </p>
+            <p> <a class="btn-small btn-add2cart" href="javascript:addToCartMultiple({$goods.goods_id})" ><em>加入购物车</em></a> </p>
+          </dd>
+        </dl>
+      </li>
+      <!--{/foreach}-->
+    </ul>
+    <!--{/if}-->
+  </div>
+  <!--end -->
+  <!-- {else} -->
+  <div class="goods-list" id="goodsList">
+
+<h3>{$lang.no_search_result}</h3>
+
+</div>
+   <!-- {/if} -->
+</div>
+ <script type="text/javascript">
+        {foreach from=$lang.compare_js item=item key=key}
+        var {$key} = "{$item}";
+        {/foreach}
+
+                                {foreach from=$lang.compare_js item=item key=key}
+        {if $key neq 'button_compare'}
+        var {$key} = "{$item}";
+        {else}
+        var button_compare = '';
+        {/if}
+        {/foreach}
+
+
+        var compare_no_goods = "{$lang.compare_no_goods}";
+        window.onload = function()
+        {
+          Compare.init();
+          fixpng();
+        }
+        var btn_buy = "{$lang.btn_buy}";
+        var is_cancel = "{$lang.is_cancel}";
+        var select_spe = "{$lang.select_spe}";
+        </script>
+  
+</div>
+ </div>
+</div>
+
+<div class="footer" id="footer">
+	<div class="foot-main"> 
+		<!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem -->
+	</div>
+		<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+	</div>
+</body>
+</html>
+

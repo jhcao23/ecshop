@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+<!-- {if $cat_style} -->
+<link href="{$cat_style}" rel="stylesheet" type="text/css" />
+<!-- {/if} -->
+{* 包含脚本文件 *}
+{insert_scripts files='jquery-1.9.1.min.js,jquery.json.js'}
+{insert_scripts files='common.js,global.js,compare.js'}
+</head>
+<body>
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+
+<div class="wrapper e-imageload">
+  <div class="content">
+    <!--当前位置 start-->
+    <!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem -->
+    <!--当前位置 end-->
+    <div class="selector" id="goodSelector">
+      <div class="selector-cate">
+        <dl>
+          <dt>分类：</dt>
+          <dd>
+            <!--{foreach from=$level_category item=cat}-->
+            <a 
+            
+            
+            
+            <!--{if $cat.status eq 1}-->
+            class="on"
+            <!--{/if}-->
+            href="{$cat.url}">{$cat.cat_name}</a>
+            <!--{/foreach}-->
+          </dd>
+        </dl>
+      </div>
+      <div class="selector-frame">
+        <div class="selector-items">
+          <!--{if $brands.1}-->
+          <dl class="first">
+            <dt>{$lang.brand}：</dt>
+            <dd>
+              <div class="topitems topitems-min">
+                <!--{foreach from=$brands item=brand}-->
+                <!-- {if $brand.selected} -->
+                <a class="on" href="javascript:;">{$brand.brand_name}</a>
+                <!-- {else} -->
+                <a href="{$brand.url}">{$brand.brand_name}</a>
+                <!-- {/if} -->
+                <!--{/foreach}-->
+              </div>
+            </dd>
+          </dl>
+          <!--{/if}-->
+          <!--{foreach from=$filter_attr_list item=filter_attr}-->
+          <dl>
+            <dt> {$filter_attr.filter_attr_name|escape:html}： </dt>
+            <dd>
+              <div class="topitems topitems-min">
+                <!--{foreach from=$filter_attr.attr_list item=attr}-->
+                <!-- {if $attr.selected} -->
+                <a class="on" href="javascript:;">{$attr.attr_value}</a>
+                <!-- {else} -->
+                <a href="{$attr.url}">{$attr.attr_value}</a>&nbsp;
+                <!-- {/if} -->
+                <!--{/foreach}-->
+              </div>
+            </dd>
+          </dl>
+          <!--{/foreach}-->
+          <!--{if $price_grade.1}-->
+          <dl>
+            <dt>{$lang.price}： </dt>
+            <dd>
+              <div class="topitems  items-price">
+                <!--{foreach from=$price_grade item=grade}-->
+                <!-- {if $grade.selected} -->
+                <a class="on" href="javascript:;">{$grade.price_range}</a>
+                <!-- {else} -->
+                <a href="{$grade.url}"> {$grade.price_range}</a>
+                <!-- {/if} -->
+                <!--{/foreach}-->
+              </div>
+            </dd>
+          </dl>
+          <!--{/if}-->
+        </div>
+      </div>
+    </div>
+	
+	
+	
+	 <!-- #BeginLibraryItem "/library/goods_list.lbi" --><!-- #EndLibraryItem -->
+	 <!-- #BeginLibraryItem "/library/pages.lbi" --><!-- #EndLibraryItem -->
+	
+  </div>
+</div>
+
+<div class="footer" id="footer">
+	<div class="foot-main"> 
+	 <!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem -->
+	</div>
+	<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+	</div>
+	
+<img id="flyBuy"/>
+</body>
+</html>

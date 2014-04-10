@@ -1,0 +1,168 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="block">
+  <p class="home">
+    <span><a href="../index.php">HOME</a></span>
+    <span style="width:10px;"><img src="../images/bottom_line1.gif" width="3" height="19"></span>
+    <span><a href="#top">TOP</a> </span>
+  </p>
+  <div class="blank"></div>
+</div>
+<div class="bottom_line"></div>
+<div class="bottom_img">
+  <div class="bottom_log">
+    <img src="../images/bottom_logo.gif" width="239" height="45">
+  </div>
+  <div class="bottom_tel">
+    <img src="../images/bottom_400.gif" width="419" height="105">
+  </div>
+
+
+
+</div>
+<div class=" bottom_line2"></div>
+
+
+<div class="footer_txt "> 
+
+
+  <div class="block">
+
+
+    <div class="bNavList ">
+      <p > 
+        <!-- {if $navigator_list.bottom} --> 
+        <!-- {foreach name=nav_bottom_list from=$navigator_list.bottom item=nav} --> 
+        <a href="{$nav.url}" <!-- {if $nav.opennew eq 1} --> target="_blank" <!-- {/if} -->>{$nav.name}</a> 
+        <!-- {/foreach} --> 
+        <!-- {/if} --> 
+      </p>
+    </div>
+
+    <div style=" line-height:22px;">
+
+      <!-- ICP 证书{if $icp_number} -->
+      {$lang.icp_number}:<a href="http://www.miibeian.gov.cn/" target="_blank">{$icp_number}</a><br />
+      <!-- 结束ICP 证书{/if} -->
+      {$copyright}
+      {$shop_address} {$shop_postcode} <a href=" http://www.ecmoban.com" target="_blank" style=" vertical-align:middle;"><img src="../images/ecmoban.gif" alt="ECShop模板"></a>
+      {foreach from=$lang.p_y item=pv}{$pv}{/foreach}{$licensed}<br />
+      {if $stats_code}
+      <div align="center">{$stats_code}</div>
+      {/if}
+
+
+    </div>
+
+    <div class="blank"></div>  
+  </div>
+</div>
+</div>
+
+<!-- 悬浮客服开始 -->
+
+<link href="themes/ecmoban_shishangqiyi/qq/images/qq.css" rel="stylesheet" type="text/css" />
+<div class="QQbox" id="divQQbox" style="width: 170px; ">
+  <div class="Qlist" id="divOnline" onmouseout="hideMsgBox(event);" style="display: none; " onmouseover="OnlineOver();">
+    <div class="t"></div>
+    <div class="infobox">我们营业的时间<br>9:00-18:00</div>
+    <div class="con">
+      <ul>
+
+       <!-- QQ 号码 {foreach from=$qq item=im} -->
+       <!-- {if $im} -->
+       <li><a href="http://wpa.qq.com/msgrd?V=1&amp;Uin={$im}&amp;Site={$shop_name}&amp;Menu=yes" target="_blank"><img src="http://wpa.qq.com/pa?p=1:{$im}:4" height="16" border="0" alt="QQ" /> {$im}</a> </li>
+       <!-- {/if} -->
+       <!-- {/foreach} 结束QQ号码 -->
+
+       <!-- 淘宝旺旺 {foreach from=$ww item=im} -->
+       <!-- {if $im} -->
+       <li><a href="http://amos1.taobao.com/msg.ww?v=2&uid={$im|escape:u8_url}&s=2" target="_blank"><img src="http://amos1.taobao.com/online.ww?v=2&uid={$im|escape:u8_url}&s=2" width="16" height="16" border="0" alt="淘宝旺旺" />{$im}</a></li>
+       <!-- {/if} -->
+       <!--{/foreach} 结束淘宝旺旺 -->
+
+       <!-- Skype {foreach from=$skype item=im} -->
+       <!-- {if $im} -->
+       <li><img src="http://mystatus.skype.com/smallclassic/{$im|escape:url}" alt="Skype" /><a href="skype:{$im|escape:url}?call">{$im}</a></li>
+       <!-- {/if} --> 
+       <!-- {/foreach} -->
+
+       <!-- 客服电话{if $service_phone} -->
+       <li> 服务热线: {$service_phone}</li>
+       <!-- 结束客服电话{/if} -->
+     </ul>
+   </div>
+   <div class="b"></div>
+ </div>
+ <div id="divMenu" onmouseover="OnlineOver();" style="display: block; "><img src="themes/ecmoban_shishangqiyi/qq/images/qq_1.gif" class="press" alt="在线咨询"></div>
+</div>
+<script type="text/javascript">
+  //<![CDATA[
+  var tips; var theTop = 120/*这是默认高度,越大越往下*/; var old = theTop;
+  function initFloatTips() {
+    tips = document.getElementById('divQQbox');
+    moveTips();
+  };
+  function moveTips() {
+    var tt=50;
+    if (window.innerHeight) {
+      pos = window.pageYOffset
+    }
+    else if (document.documentElement && document.documentElement.scrollTop) {
+      pos = document.documentElement.scrollTop
+    }
+    else if (document.body) {
+      pos = document.body.scrollTop;
+    }
+    pos=pos-tips.offsetTop+theTop;
+    pos=tips.offsetTop+pos/10;
+    if (pos < theTop) pos = theTop;
+    if (pos != old) {
+      tips.style.top = pos+"px";
+      tt=10;
+  //alert(tips.style.top);
+  }
+  old = pos;
+  setTimeout(moveTips,tt);
+  }
+  //!]]>
+  initFloatTips();
+  function OnlineOver(){
+    document.getElementById("divMenu").style.display = "none";
+    document.getElementById("divOnline").style.display = "block";
+    document.getElementById("divQQbox").style.width = "170px";
+  }
+  function OnlineOut(){
+    document.getElementById("divMenu").style.display = "block";
+    document.getElementById("divOnline").style.display = "none";
+  }
+  if(typeof(HTMLElement)!="undefined")    //给firefox定义contains()方法，ie下不起作用
+  {   
+    HTMLElement.prototype.contains=function(obj)   
+    {   
+            while(obj!=null&&typeof(obj.tagName)!="undefind"){ //通过循环对比来判断是不是obj的父元素
+             　　　　if(obj==this) return true;   
+             　　　　obj=obj.parentNode;
+           　　}   
+           return false;   
+         };   
+       }  
+  function hideMsgBox(theEvent){ //theEvent用来传入事件，Firefox的方式
+    　 if (theEvent){
+  　 var browser=navigator.userAgent; //取得浏览器属性
+  　 if (browser.indexOf("Firefox")>0){ //如果是Firefox
+  　　 if (document.getElementById('divOnline').contains(theEvent.relatedTarget)) { //如果是子元素
+  　　 return; //结束函式
+  } 
+  } 
+  if (browser.indexOf("MSIE")>0){ //如果是IE
+  if (document.getElementById('divOnline').contains(event.toElement)) { //如果是子元素
+  return; //结束函式
+  }
+  }
+  }
+  /*要执行的操作*/
+  document.getElementById("divMenu").style.display = "block";
+  document.getElementById("divOnline").style.display = "none";
+  }
+</script>
+

@@ -1,0 +1,97 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="themes/ecmoban_shishangqiyi/qq/images/qq.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+var process_request = "{$lang.process_request}";
+</script>
+
+<div class="heads" name="top" >
+  <div class="block">
+    <div class="user_control">
+    <div class="shop_txt_out" id="ECS_CARTINFO" > <div class="shop_txt">{insert name='cart_info'} </div></div>
+      <ul>
+        {insert_scripts files='transport.js,utils.js'} <font id="ECS_MEMBERZONE" style="display:block; float:left;">{* ECSHOP 提醒您：根据用户id来调用member_info.lbi显示不同的界面  *}{insert name='member_info'} </font>
+        <!--{if $navigator_list.top}--> 
+        
+        <!-- {foreach name=nav_top_list from=$navigator_list.top item=nav} -->
+        <li id="topNav" class="clearfix"> <a href="{$nav.url}" 
+            <!-- {if $nav.opennew eq 1} --> 
+          target="_blank" 
+          <!-- {/if} --> 
+          >{$nav.name}</a> </li>
+        <!-- {/foreach} --> 
+        
+        <!-- {/if} -->
+       
+      </ul>
+       
+    </div>
+  </div>
+</div>
+ 
+<!--顶部导航-->
+
+
+<div class="header ">
+  <div class="headBody">
+    <div class="headBox">
+      <div class="ad_header">
+        <div id="slideBox2" class="slideBox2">
+          <div class="bd f_l">
+            <ul>
+              <li><img src="../images/pic1.jpg" /> </li>
+              <
+             
+            </ul>
+          </div>
+          
+        </div>
+      </div>
+      
+      <div class="logo"><a href="../index.php" ><img src="../images/logo.gif"  width="374" height="71"/></a></div>
+      
+    </div>
+  </div>
+</div>
+
+
+
+<div class="block" style="height:45px;">
+  <div class="headNav">
+    <div class="subNav">
+      <ul>
+        <!-- {foreach name=nav_middle_list from=$navigator_list.middle item=nav name=foo} -->
+        
+        <li  {if $nav.active eq 1} class=" current"{/if}><a href="{$nav.url}" {if $nav.opennew eq 1}target="_blank" {/if}>{$nav.name}</a> 
+          
+          <!-- {if !$smarty.foreach.foo.last} --> 
+          <img src="../images/icon_line1.gif" width="7" height="20"> 
+          <!-- {/if} --> 
+          
+        </li>
+        
+        <!-- {/foreach} -->
+      </ul>
+    </div>
+  </div>
+  <!--search start-->
+  <div id="search"  class="headSearch">
+    <form id="searchForm" name="searchForm" method="get" action="search.php" onSubmit="return checkSearchForm()"  >
+      <Div class="headSearch_f_l"></Div>
+      <div class="headSearch_input">
+        <input name="keywords" type="text" id="keyword" value="" onclick="javascript:if(this.value=='')this.value=''"  />
+      </div>
+      <div class="headSearch_btn">
+        <input name="imageField" type="submit" value=""  style="cursor:pointer;" />
+      </div>
+    </form>
+  </div>
+  <!--search end--> 
+</div>
+ 
+
+ 
+ 
+
+ 
+
+

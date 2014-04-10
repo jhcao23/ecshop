@@ -1,0 +1,21 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<ul class="goodslist-qiang clearfix active">
+  <!-- {foreach from=$promotion_goods item=goods} -->
+  <li>
+    <div class="endtime prod-countdown" value="{$goods.end_date}" ></div>
+    <dl>
+      <dt> <a href="{$goods.url}" target="_blank" class="pimg"> <img width="110" height="180" alt="{$goods.name}" src="{$goods.thumb}"> </a>
+        <p class="promo-icon"></p>
+      </dt>
+      <dd class="base"> <a href="{$goods.url}" target="_blank" class="pname" title="{$goods.name}"> {$goods.name}<span class="en" title=""></span> </a>
+        <p class="price"> <span class="minprice">
+          <label>抢购价：</label>
+          <strong>{$goods.promote_price}</strong></span> </p>
+      </dd>
+      <dd class="slogan">
+        <p>{$goods.brief}</p>
+      </dd>
+    </dl>
+  </li>
+  <!-- {/foreach} -->
+</ul>

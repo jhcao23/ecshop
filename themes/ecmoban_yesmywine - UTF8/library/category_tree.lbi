@@ -1,0 +1,13 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+ <!--{foreach from=$categories item=cat}-->
+ <dl class="first"> 
+   <dt> 
+    <h4><a target="_blank" class="topcate" href="{$cat.url}">{$cat.name|escape:html}</a></h4> 
+    <p><!--{foreach from=$cat.cat_id item=child}--><!--{foreach from=$child.cat_id item=childer}--><a target="_blank" href="{$childer.url}">{$childer.name|escape:html}</a><!--{/foreach}--><!--{/foreach}--></p> 
+   </dt> 
+   
+  
+  </dl>
+<!--{/foreach}--> 
+
+

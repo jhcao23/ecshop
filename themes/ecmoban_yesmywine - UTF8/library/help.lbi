@@ -1,0 +1,19 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!--{if $helps}-->
+
+  <ul class="col5 clearfix">
+    <li class="first"> <a target="_blank" class="foot-logo" href="#">也买酒</a></li>
+    <li>
+      <h4>关注我们</h4>
+      <p class="sns"> <a target="_blank" href="#" class="ico-weibo">新浪微博</a> <a class="ico-weixin">我的微信</a> <a target="_blank" href="#" class="ico-tencent">腾讯微博</a> <a target="_blank" href="#" class="ico-douban">豆瓣小站</a> <a href="#" class="ico-mail">邮件订阅</a> </p>
+    </li>
+    <!-- {foreach from=$helps item=help_cat} -->
+    <li>
+      <h4>{$help_cat.cat_name}</h4>
+	 
+      <p>   <!-- {foreach from=$help_cat.article item=item} --><a target="_blank" href="{$item.url}">{$item.short_title}</a>  <!-- {/foreach} --></p>
+    </li>
+    <!-- {/foreach} -->
+  </ul>
+
+<!--{/if}-->

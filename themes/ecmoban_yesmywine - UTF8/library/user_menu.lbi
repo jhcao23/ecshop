@@ -1,0 +1,100 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+
+
+ 
+<div class="userMenu">
+
+<div class="h3"><a href="user.php">会员中心</a></div>
+ 
+<div id="cate">
+		<h1 onclick="tab(0)">
+        <span>
+		 订单中心
+        </span>  
+		 
+         <img src="images/user_up.gif"  >
+    
+		</h1>
+		<ul style="display:block">
+      <a href="user.php?act=order_list"{if $action eq 'order_list'|| $action eq 'order_detail'}class="curs"{/if}> {$lang.label_order}</a>
+      <a href="user.php?act=address_list"{if $action eq 'address_list'}class="curs"{/if}>{$lang.label_address}</a>
+       
+<a href="user.php?act=booking_list"{if $action eq 'booking_list'}class="curs"{/if}> {$lang.label_booking}</a>
+		</ul>
+		<div style="clear:both"></div>
+        
+        
+        	<h1 onclick="tab(1)">
+            <span>
+		会员中心
+          </span>  
+	   <img src="images/user_up.gif"  >
+		</h1>
+		<ul style="display:block">
+		 
+<a href="user.php?act=profile"{if $action eq 'profile'}class="curs"{/if}>  {$lang.label_profile}</a>
+ 
+<a href="user.php?act=collection_list"{if $action eq 'collection_list'}class="curs"{/if}> {$lang.label_collection}</a>
+
+<a href="user.php?act=message_list"{if $action eq 'message_list'}class="curs"{/if}> {$lang.label_message}</a>
+
+ 
+<a href="user.php?act=tag_list"{if $action eq 'tag_list'}class="curs"{/if}>{$lang.label_tag}</a>
+
+<!-- {if $affiliate.on eq 1} --><a href="user.php?act=affiliate"{if $action eq 'affiliate'}class="curs"{/if}>  {$lang.label_affiliate}</a><!-- {/if} -->
+
+<a href="user.php?act=comment_list"{if $action eq 'comment_list'}class="curs"{/if}> {$lang.label_comment}</a>
+		</ul>
+		<div style="clear:both"></div>
+        
+        
+        
+        	<h1 onclick="tab(2)">
+       <span>
+账户中心
+      </span>
+		   <img src="images/user_up.gif"  >
+		</h1>
+		<ul style="display:block;">
+		<a href="user.php?act=bonus"{if $action eq 'bonus'}class="curs"{/if}>{$lang.label_bonus}</a>
+        <!--<a href="user.php?act=group_buy">{$lang.label_group_buy}</a>-->
+<a href="user.php?act=track_packages"{if $action eq 'track_packages'}class="curs"{/if}> {$lang.label_track_packages}</a>
+<a href="user.php?act=account_log"{if $action eq 'account_log'}class="curs"{/if}> {$lang.label_user_surplus}</a>
+<!--{if $show_transform_points}-->
+<a href="user.php?act=transform_points"{if $action eq 'transform_points'}class="curs"{/if}>{$lang.label_transform_points}</a>
+<!--{/if}-->
+		</ul>
+
+</div>
+  
+  
+ 
+</div>
+
+ 
+	 
+ 
+	 
+ 
+
+
+<script type="text/javascript">
+obj_h4 = document.getElementById("cate").getElementsByTagName("h4")
+obj_ul = document.getElementById("cate").getElementsByTagName("ul")
+obj_img = document.getElementById("cate").getElementsByTagName("img")
+function tab(id)
+{ 
+		if(obj_ul.item(id).style.display == "block")
+		{
+			obj_ul.item(id).style.display = "none"
+			obj_img.item(id).src = "images/user_down.gif"
+			return false;
+		}
+		else(obj_ul.item(id).style.display == "none")
+		{
+			obj_ul.item(id).style.display = "block"
+			obj_img.item(id).src = "images/user_up.gif"
+		}
+}
+</script>

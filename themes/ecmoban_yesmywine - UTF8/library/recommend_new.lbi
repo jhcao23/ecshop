@@ -1,0 +1,16 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<ul class="clearfix">
+  <!-- {foreach from=$new_goods item=goods} -->
+  <li>
+    <dl>
+      <dt> <a title="{$goods.name}" target="_blank" href="{$goods.url}" class="pimg"><img width="110" height="180" alt="{$goods.name}" src="{$goods.thumb}"></a>
+        <p class="promo-icon"><ins>新品</ins></p>
+      </dt>
+      <dd class="base"> <a title="{$goods.name}" target="_blank" href="{$goods.url}" class="pname"> {$goods.name} </a>
+        <p class="price"> <span class="minprice"><strong>{$goods.shop_price}</strong></span> <span class="maxprice"><del>{$goods.market_price}</del></span> </p>
+      </dd>
+     
+    </dl>
+  </li>
+  <!-- {/foreach} -->
+</ul>

@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable -->
+<!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="{$ecs_css_path}" rel="stylesheet" type="text/css" />
+<style>
+.site-nav .categorys .categroup{display:block;}
+</style>
+<link rel="alternate" type="application/rss+xml" title="RSS|{$page_title}" href="{$feed_url}" />
+{* 包含脚本文件 *}
+<script type="text/javascript">
+var cur_date = new Date();
+var serverTime = cur_date.getTime();
+</script>
+{insert_scripts files='common.js,index.js'}
+<body>
+<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem --> 
+{insert_scripts files='yesmywine_index.js'}
+<!--头部幻灯片 start-->
+<div class="hpmain" id="index-warp">
+  <div class="bigbanner">
+    <div class="section">
+      <div id="bigFocusSlider" class="slide-box"> <!-- #BeginLibraryItem "/library/index_ad.lbi" --><!-- #EndLibraryItem --> </div>
+    </div>
+  </div>
+  <div class="channel channel-yangjiu mt15">
+    <div class="channel-header">
+      <h2>精品推荐</h2>
+      <ul>
+        <li class="more"><a href="search.php?intro=best" target="_blank">更多</a></li>
+      </ul>
+    </div>
+    <div class="section grid-mr">
+      <div class="main">
+        <div class="goodslist">
+		  <!-- TemplateBeginEditable name="精品推荐区域" -->
+<!-- #BeginLibraryItem "/library/recommend_best.lbi" -->
+
+
+	
+<ul class="clearfix">
+  <!-- {foreach from=$best_goods item=goods} -->
+  <li>
+    <dl>
+      <dt> <a title="{$goods.name}" target="_blank" href="{$goods.url}" class="pimg"><img width="110" height="180" alt="{$goods.name}" src="{$goods.thumb}"></a>
+        <p class="promo-icon"><ins>精品</ins></p>
+      </dt>
+      <dd class="base"> <a title="{$goods.name}" target="_blank" href="{$goods.url}" class="pname"> {$goods.name} </a>
+        <p class="price"> <span class="minprice"><strong>{$goods.shop_price}</strong></span> <span class="maxprice"><del>{$goods.market_price}</del></span> </p>
+      </dd>
+
+    </dl>
+  </li>
+  <!-- {/foreach} -->
+</ul>
+
+ <!-- #EndLibraryItem -->
+<!-- TemplateEndEditable -->
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="channel channel-yangjiu mt15">
+    <div class="channel-header">
+      <h2>新品上市</h2>
+      <ul>
+        <li class="more"><a href="search.php?intro=new" target="_blank">更多</a></li>
+      </ul>
+    </div>
+    <div class="section grid-mr">
+      <div class="main">
+        <div class="goodslist">
+           <!-- TemplateBeginEditable name="新品上市区域" -->
+<!-- #BeginLibraryItem "/library/recommend_new.lbi" -->
+
+<ul class="clearfix">
+  <!-- {foreach from=$new_goods item=goods} -->
+  <li>
+    <dl>
+      <dt> <a title="{$goods.name}" target="_blank" href="{$goods.url}" class="pimg"><img width="110" height="180" alt="{$goods.name}" src="{$goods.thumb}"></a>
+        <p class="promo-icon"><ins>新品</ins></p>
+      </dt>
+      <dd class="base"> <a title="{$goods.name}" target="_blank" href="{$goods.url}" class="pname"> {$goods.name} </a>
+        <p class="price"> <span class="minprice"><strong>{$goods.shop_price}</strong></span> <span class="maxprice"><del>{$goods.market_price}</del></span> </p>
+      </dd>
+     
+    </dl>
+  </li>
+  <!-- {/foreach} -->
+</ul>
+
+ <!-- #EndLibraryItem -->
+<!-- TemplateEndEditable -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="channel channel-yangjiu mt15">
+    <div class="channel-header">
+      <h2>热卖商品</h2>
+      <ul>
+        <li class="more"><a href="search.php?intro=hot" target="_blank">更多</a></li>
+      </ul>
+    </div>
+    <div class="section grid-mr">
+      <div class="main">
+        <div class="goodslist">
+           <!-- TemplateBeginEditable name="热卖商品区域" -->
+<!-- #BeginLibraryItem "/library/recommend_hot.lbi" -->
+
+<ul class="clearfix">
+  <!-- {foreach from=$hot_goods item=goods} -->
+  <li>
+    <dl>
+      <dt> <a title="{$goods.name}" target="_blank" href="{$goods.url}" class="pimg"><img width="110" height="180" alt="{$goods.name}" src="{$goods.thumb}"></a>
+        <p class="promo-icon"><ins>热卖</ins></p>
+      </dt>
+      <dd class="base"> <a title="{$goods.name}" target="_blank" href="{$goods.url}" class="pname"> {$goods.name} </a>
+        <p class="price"> <span class="minprice"><strong>{$goods.shop_price}</strong></span> <span class="maxprice"><del>{$goods.market_price}</del></span> </p>
+      </dd>
+     
+    </dl>
+  </li>
+  <!-- {/foreach} -->
+</ul>
+
+ <!-- #EndLibraryItem -->
+<!-- TemplateEndEditable -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="clear" style="height:30px;"></div>
+<div class="footer" id="footer">
+  <div class="foot-main"> <!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem --> </div>
+  <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem --> </div>
+</body>
+</html>
