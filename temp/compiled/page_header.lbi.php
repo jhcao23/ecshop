@@ -60,7 +60,7 @@ if ($this->_foreach['nav_top_list']['total'] > 0):
         </div>
       </div>
       
-      <div class="logo"><a href="index.php" ><img src="themes/ecmoban_shishangqiyi/images/logo.gif"  width="374" height="71"/></a></div>
+      <div class="logo"><a href="index.php" ><img src="themes/ecmoban_shishangqiyi/images/logo.gif"  width="184" height="71"/></a></div>
       
     </div>
   </div>

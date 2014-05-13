@@ -487,8 +487,9 @@ function checkOrderForm(frm)
 
   if ( ! shippingSelected)
   {
-    alert(flow_no_shipping);
-    return false;
+      //Touch Mars Solutions: no need to select delivery method, use 51higo default
+//    alert(flow_no_shipping);
+//    return false;
   }
 
   if ( ! paymentSelected)

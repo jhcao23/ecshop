@@ -220,7 +220,9 @@ if ($_REQUEST['act'] == 'dumpsql')
     switch ($type)
     {
         case 'full':
-            $except = array($ecs->prefix.'sessions', $ecs->prefix.'sessions_data');
+            //Touch Mars: please export Session!
+            // $except = array($ecs->prefix.'sessions', $ecs->prefix.'sessions_data');
+            $except = array();
             $temp = $db->GetCol("SHOW TABLES LIKE '" . mysql_like_quote($ecs->prefix) . "%'");
             foreach ($temp AS $table)
             {

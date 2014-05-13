@@ -1584,7 +1584,9 @@ elseif ($_REQUEST['act'] == 'step_post')
         $shipping_id = $_POST['shipping'];
         $shipping = shipping_area_info($shipping_id, $region_id_list);
         $weight_amount = order_weight_price($order_id);
+
         $shipping_fee = shipping_fee($shipping['shipping_code'], $shipping['configure'], $weight_amount['weight'], $weight_amount['amount'], $weight_amount['number']);
+        
         $order = array(
             'shipping_id' => $shipping_id,
             'shipping_name' => addslashes($shipping['shipping_name']),

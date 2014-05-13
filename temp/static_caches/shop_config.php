@@ -17,8 +17,8 @@ $data = array (
   'service_phone' => '',
   'shop_closed' => '0',
   'close_comment' => '',
-  'shop_logo' => '',
-  'licensed' => '1',
+  'shop_logo' => '../themes/ecmoban_shishangqiyi/images/logo.gif',
+  'licensed' => '0',
   'user_notice' => '用户中心公告！',
   'shop_notice' => '欢迎光临手机网,我们的宗旨：诚信经营、服务客户！
 <MARQUEE onmouseover=this.stop() onmouseout=this.start() 

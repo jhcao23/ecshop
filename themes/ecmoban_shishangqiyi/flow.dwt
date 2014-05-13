@@ -427,40 +427,7 @@
           </table>
       </div>
      <div class="blank"></div>
-    <!--{if $total.real_goods_count neq 0}-->
-    <div class="flowBox">
-    <h6><span>{$lang.shipping_method}</span></h6>
-    <table width="99%" align="center" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd" id="shippingTable">
-            <tr>
-              <th bgcolor="#ffffff" width="5%">&nbsp;</th>
-              <th bgcolor="#ffffff" width="25%">{$lang.name}</th>
-              <th bgcolor="#ffffff">{$lang.describe}</th>
-              <th bgcolor="#ffffff" width="15%">{$lang.fee}</th>
-              <th bgcolor="#ffffff" width="15%">{$lang.free_money}</th>
-              <th bgcolor="#ffffff" width="15%">{$lang.insure_fee}</th>
-            </tr>
-            <!-- {foreach from=$shipping_list item=shipping} 循环配送方式 -->
-            <tr>
-              <td bgcolor="#ffffff" valign="top"><input name="shipping" type="radio" value="{$shipping.shipping_id}" {if $order.shipping_id eq $shipping.shipping_id}checked="true"{/if} supportCod="{$shipping.support_cod}" insure="{$shipping.insure}" onclick="selectShipping(this)" />
-              </td>
-              <td bgcolor="#ffffff" valign="top"><strong>{$shipping.shipping_name}</strong></td>
-              <td bgcolor="#ffffff" valign="top">{$shipping.shipping_desc}</td>
-              <td bgcolor="#ffffff" align="right" valign="top">{$shipping.format_shipping_fee}</td>
-              <td bgcolor="#ffffff" align="right" valign="top">{$shipping.free_money}</td>
-              <td bgcolor="#ffffff" align="right" valign="top">{if $shipping.insure neq 0}{$shipping.insure_formated}{else}{$lang.not_support_insure}{/if}</td>
-            </tr>
-            <!-- {/foreach} 循环配送方式 -->
-            <tr>
-              <td colspan="6" bgcolor="#ffffff" align="right"><label for="ECS_NEEDINSURE">
-                <input name="need_insure" id="ECS_NEEDINSURE" type="checkbox"  onclick="selectInsure(this.checked)" value="1" {if $order.need_insure}checked="true"{/if} {if $insure_disabled}disabled="true"{/if}  />
-                {$lang.need_insure} </label></td>
-            </tr>
-          </table>
-    </div>
-    <div class="blank"></div>
-        <!--{else}-->
-        <input name = "shipping" type="radio" value = "-1" checked="checked"  style="display:none"/>
-        <!--{/if}-->
+   
     <!--{if $is_exchange_goods neq 1 || $total.real_goods_count neq 0}-->
     <div class="flowBox">
     <h6><span>{$lang.payment_method}</span></h6>
@@ -570,80 +537,7 @@
         <!-- {/if} 是否使用贺卡 -->
 
 
-      <div class="flowBox">
-    <h6><span>{$lang.other_info}</span></h6>
-      <table width="99%" align="center" border="0" cellpadding="5" cellspacing="1" bgcolor="#dddddd">
-            <!-- {if $allow_use_surplus} 是否使用余额 -->
-            <tr>
-              <td width="20%" bgcolor="#ffffff"><strong>{$lang.use_surplus}: </strong></td>
-              <td bgcolor="#ffffff"><input name="surplus" type="text" class="inputBg" id="ECS_SURPLUS" size="10" value="{$order.surplus|default:0}" onblur="changeSurplus(this.value)" {if $disable_surplus}disabled="disabled"{/if} />
-              {$lang.your_surplus}{$your_surplus|default:0} <span id="ECS_SURPLUS_NOTICE" class="notice"></span></td>
-            </tr>
-            <!-- {/if} 是否使用余额 -->
-            <!-- {if $allow_use_integral} 是否使用积分 -->
-            <tr>
-              <td bgcolor="#ffffff"><strong>{$lang.use_integral}</strong></td>
-              <td bgcolor="#ffffff"><input name="integral" type="text" class="input" id="ECS_INTEGRAL" onblur="changeIntegral(this.value)" value="{$order.integral|default:0}" size="10" />
-              {$lang.can_use_integral}:{$your_integral|default:0} {$points_name}，{$lang.noworder_can_integral}{$order_max_integral}  {$points_name}. <span id="ECS_INTEGRAL_NOTICE" class="notice"></span></td>
-            </tr>
-            <!-- {/if} 是否使用积分 -->
-            <!-- {if $allow_use_bonus} 是否使用红包 -->
-            <tr>
-              <td bgcolor="#ffffff"><strong>{$lang.use_bonus}:</strong></td>
-              <td bgcolor="#ffffff">
-                {$lang.select_bonus}
-                <select name="bonus" onchange="changeBonus(this.value)" id="ECS_BONUS" style="border:1px solid #ccc;">
-                  <option value="0" {if $order.bonus_id eq 0}selected{/if}>{$lang.please_select}</option>
-                  <!-- {foreach from=$bonus_list item=bonus} -->
-                  <option value="{$bonus.bonus_id}" {if $order.bonus_id eq $bonus.bonus_id}selected{/if}>{$bonus.type_name}[{$bonus.bonus_money_formated}]</option>
-                  <!-- {/foreach} -->
-                </select>
-
-                {$lang.input_bonus_no}
-               <input name="bonus_sn" type="text" class="inputBg" size="15" value="{$order.bonus_sn}"/> 
-
-                <input name="validate_bonus" type="button" class="bnt_blue_1" value="{$lang.validate_bonus}" onclick="validateBonus(document.forms['theForm'].elements['bonus_sn'].value)" style="vertical-align:middle;" />
-              </td>
-            </tr>
-            <!-- {/if} 是否使用红包 -->
-            <!-- {if $inv_content_list} 能否开发票 -->
-            <tr>
-              <td bgcolor="#ffffff"><strong>{$lang.invoice}:</strong>
-                <input name="need_inv" type="checkbox"  class="input" id="ECS_NEEDINV" onclick="changeNeedInv()" value="1" {if $order.need_inv}checked="true"{/if} />
-              </td>
-              <td bgcolor="#ffffff">
-                <!-- {if $inv_type_list} -->
-                {$lang.invoice_type}
-                <select name="inv_type" id="ECS_INVTYPE" {if $order.need_inv neq 1}disabled="true"{/if} onchange="changeNeedInv()" style="border:1px solid #ccc;">
-                {html_options options=$inv_type_list selected=$order.inv_type}</select>
-                <!-- {/if} -->
-                {$lang.invoice_title}
-                <input name="inv_payee" type="text"  class="input" id="ECS_INVPAYEE" size="20" {if !$order.need_inv}disabled="true"{/if} value="{$order.inv_payee}" onblur="changeNeedInv()" />
-                {$lang.invoice_content}
-              <select name="inv_content" id="ECS_INVCONTENT" {if $order.need_inv neq 1}disabled="true"{/if}  onchange="changeNeedInv()" style="border:1px solid #ccc;">
-
-                {html_options values=$inv_content_list output=$inv_content_list selected=$order.inv_content}
-
-                </select></td>
-            </tr>
-            <!-- {/if} -->
-            <tr>
-              <td valign="top" bgcolor="#ffffff"><strong>{$lang.order_postscript}:</strong></td>
-              <td bgcolor="#ffffff"><textarea name="postscript" cols="80" rows="3" id="postscript" style="border:1px solid #ccc;">{$order.postscript|escape}</textarea></td>
-            </tr>
-            <!-- {if $how_oos_list} 是否使用缺货处理 -->
-            <tr>
-              <td bgcolor="#ffffff"><strong>{$lang.booking_process}:</strong></td>
-              <td bgcolor="#ffffff"><!-- {foreach from=$how_oos_list key=how_oos_id item=how_oos_name} -->
-                <label>
-                <input name="how_oos" type="radio" value="{$how_oos_id}" {if $order.how_oos eq $how_oos_id}checked{/if} onclick="changeOOS(this)" />
-                {$how_oos_name}</label>
-                <!-- {/foreach} -->
-              </td>
-            </tr>
-            <!-- {/if} 缺货处理结束 -->
-          </table>
-    </div>
+     
     <div class="blank"></div>
     <div class="flowBox">
     <h6><span>{$lang.fee_total}</span></h6>

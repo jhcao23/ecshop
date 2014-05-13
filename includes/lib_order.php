@@ -130,8 +130,40 @@ function shipping_area_info($shipping_id, $region_id_list)
     return $row;
 }
 
+// /** can't override???
+//  * 计算运费
+//  * @param   string  $shipping_code      配送方式代码
+//  * @param   mix     $shipping_config    配送方式配置信息
+//  * @param   float   $goods_weight       商品重量
+//  * @param   float   $goods_amount       商品金额
+//  * @param   float   $goods_number       商品数量
+//  * @return  float   运费
+//  */
+// function shipping_fee($shipping_code, $shipping_config, $goods_weight, $goods_amount, $goods_number='')
+// {
+//     if (!is_array($shipping_config))
+//     {
+//         $shipping_config = unserialize($shipping_config);
+//     }
+
+//     $filename = ROOT_PATH . 'includes/modules/shipping/' . $shipping_code . '.php';
+//     if (file_exists($filename))
+//     {
+//         include_once($filename);
+
+//         $obj = new $shipping_code($shipping_config);
+
+//         return $obj->calculate($goods_weight, $goods_amount, $goods_number);
+//     }
+//     else
+//     {
+//         return 0;
+//     }
+// }
+
+
 /**
- * 计算运费
+ * 计算运费 for HiGo Host only
  * @param   string  $shipping_code      配送方式代码
  * @param   mix     $shipping_config    配送方式配置信息
  * @param   float   $goods_weight       商品重量
@@ -139,24 +171,28 @@ function shipping_area_info($shipping_id, $region_id_list)
  * @param   float   $goods_number       商品数量
  * @return  float   运费
  */
-function shipping_fee($shipping_code, $shipping_config, $goods_weight, $goods_amount, $goods_number='')
+function shipping_fee($shipping_code, $shipping_config, $goods_weight, $goods_amount, $goods_number='', $goods,  $shipping_select=1)
 {
-    if (!is_array($shipping_config))
-    {
-        $shipping_config = unserialize($shipping_config);
-    }
+    if($shipping_code=='higo_shipping'){
+        if (!is_array($shipping_config))
+        {
+            $shipping_config = unserialize($shipping_config);
+        }
 
-    $filename = ROOT_PATH . 'includes/modules/shipping/' . $shipping_code . '.php';
-    if (file_exists($filename))
-    {
-        include_once($filename);
+        $filename = ROOT_PATH . 'includes/modules/shipping/' . $shipping_code . '.php';
+        if (file_exists($filename))
+        {
+            include_once($filename);
 
-        $obj = new $shipping_code($shipping_config);
+            $obj = new $shipping_code($shipping_config);
 
-        return $obj->calculate($goods_weight, $goods_amount, $goods_number);
-    }
-    else
-    {
+            return $obj->calculate($goods_weight, $goods_amount, $goods_number, $goods, $shipping_select);
+        }
+        else
+        {
+            return 0;
+        }
+    }else{
         return 0;
     }
 }
@@ -583,6 +619,17 @@ function order_fee($order, $goods, $consignee)
 
         $total['goods_price']  += $val['goods_price'] * $val['goods_number'];
         $total['market_price'] += $val['market_price'] * $val['goods_number'];
+        
+        //Touch Mars Solutions::sum up shipping fee for different shipping-category
+        //we need to find out how many shipping-category and for each shipping-category, how many goods
+        //that's why we need to create a new table category_shipping, and assign each goods one category_shipping
+        //sometimes one shipping-category has waiver-max: when total product purchase is over the waiver-max, 
+        //shipping fee is set to 0.
+        if($total['real_goods_count']==1){
+            $total['shipping_fee']=10;
+        }else if($total['real_goods_count']>1){
+            $total['shipping_fee']+=5;
+        }
     }
 
     $total['saving']    = $total['market_price'] - $total['goods_price'];
@@ -682,9 +729,8 @@ function order_fee($order, $goods, $consignee)
             // 查看购物车中是否全为免运费商品，若是则把运费赋为零
             $sql = 'SELECT count(*) FROM ' . $GLOBALS['ecs']->table('cart') . " WHERE  `session_id` = '" . SESS_ID. "' AND `extension_code` != 'package_buy' AND `is_shipping` = 0";
             $shipping_count = $GLOBALS['db']->getOne($sql);
-
             $total['shipping_fee'] = ($shipping_count == 0 AND $weight_price['free_shipping'] == 1) ?0 :  shipping_fee($shipping_info['shipping_code'],$shipping_info['configure'], $weight_price['weight'], $total['goods_price'], $weight_price['number']);
-
+            
             if (!empty($order['need_insure']) && $shipping_info['insure'] > 0)
             {
                 $total['shipping_insure'] = shipping_insure_fee($shipping_info['shipping_code'],
@@ -2023,10 +2069,10 @@ function merge_order($from_order_sn, $to_order_sn)
 
         $region_id_list = array($order['country'], $order['province'], $order['city'], $order['district']);
         $shipping_area = shipping_area_info($order['shipping_id'], $region_id_list);
-
+        
         $order['shipping_fee'] = shipping_fee($shipping_area['shipping_code'],
-            unserialize($shipping_area['configure']), $weight_price['weight'], $weight_price['amount'], $weight_price['number']);
-
+                unserialize($shipping_area['configure']), $weight_price['weight'], $weight_price['amount'], $weight_price['number']);
+        
         // 如果保价了，重新计算保价费
         if ($order['insure_fee'] > 0)
         {

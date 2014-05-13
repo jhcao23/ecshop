@@ -47,7 +47,7 @@ var process_request = "{$lang.process_request}";
         </div>
       </div>
       
-      <div class="logo"><a href="../index.php" ><img src="../images/logo.gif"  width="374" height="71"/></a></div>
+      <div class="logo"><a href="../index.php" ><img src="../images/logo.gif"  width="184" height="71"/></a></div>
       
     </div>
   </div>

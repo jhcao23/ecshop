@@ -1498,7 +1498,7 @@ elseif ($_REQUEST['step'] == 'done')
         $sql="SELECT shipping_id FROM " . $ecs->table('shipping') . " WHERE shipping_id=".$order['shipping_id'] ." AND enabled =1"; 
         if(!$db->getOne($sql))
         {
-           show_message($_LANG['flow_no_shipping']);
+//           show_message($_LANG['flow_no_shipping']);  //Touch Mars Solutions Inc.: no need to select 配送方式 use higo51 default
         }
     }
     /* 订单中的总额 */

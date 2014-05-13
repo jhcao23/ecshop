@@ -1,4 +1,4 @@
-<?php exit;?>a:3:{s:8:"template";a:7:{i:0;s:73:"/Library/WebServer/Documents/ecshop/themes/ecmoban_shishangqiyi/index.dwt";i:1;s:87:"/Library/WebServer/Documents/ecshop/themes/ecmoban_shishangqiyi/library/page_header.lbi";i:2;s:95:"/Library/WebServer/Documents/ecshop/themes/ecmoban_shishangqiyi/library/recommend_promotion.lbi";i:3;s:89:"/Library/WebServer/Documents/ecshop/themes/ecmoban_shishangqiyi/library/recommend_new.lbi";i:4;s:89:"/Library/WebServer/Documents/ecshop/themes/ecmoban_shishangqiyi/library/recommend_hot.lbi";i:5;s:90:"/Library/WebServer/Documents/ecshop/themes/ecmoban_shishangqiyi/library/recommend_best.lbi";i:6;s:87:"/Library/WebServer/Documents/ecshop/themes/ecmoban_shishangqiyi/library/page_footer.lbi";}s:7:"expires";i:1397105372;s:8:"maketime";i:1397101772;}<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php exit;?>a:3:{s:8:"template";a:7:{i:0;s:73:"/Library/WebServer/Documents/ecshop/themes/ecmoban_shishangqiyi/index.dwt";i:1;s:87:"/Library/WebServer/Documents/ecshop/themes/ecmoban_shishangqiyi/library/page_header.lbi";i:2;s:95:"/Library/WebServer/Documents/ecshop/themes/ecmoban_shishangqiyi/library/recommend_promotion.lbi";i:3;s:89:"/Library/WebServer/Documents/ecshop/themes/ecmoban_shishangqiyi/library/recommend_new.lbi";i:4;s:89:"/Library/WebServer/Documents/ecshop/themes/ecmoban_shishangqiyi/library/recommend_hot.lbi";i:5;s:90:"/Library/WebServer/Documents/ecshop/themes/ecmoban_shishangqiyi/library/recommend_best.lbi";i:6;s:87:"/Library/WebServer/Documents/ecshop/themes/ecmoban_shishangqiyi/library/page_footer.lbi";}s:7:"expires";i:1399944586;s:8:"maketime";i:1399940986;}<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta name="Generator" content="ECSHOP v2.7.3" />
@@ -45,7 +45,7 @@ var process_request = "正在处理您的请求...";
         </div>
       </div>
       
-      <div class="logo"><a href="index.php" ><img src="themes/ecmoban_shishangqiyi/images/logo.gif"  width="374" height="71"/></a></div>
+      <div class="logo"><a href="index.php" ><img src="themes/ecmoban_shishangqiyi/images/logo.gif"  width="184" height="71"/></a></div>
       
     </div>
   </div>
@@ -92,6 +92,87 @@ var process_request = "正在处理您的请求...";
         
                 
         <li  ><a href="category.php?id=20" >营养保健</a> 
+          
+           
+          <img src="themes/ecmoban_shishangqiyi/images/icon_line1.gif" width="7" height="20"> 
+           
+          
+        </li>
+        
+                
+        <li  ><a href="category.php?id=16" >美容护肤</a> 
+          
+           
+          <img src="themes/ecmoban_shishangqiyi/images/icon_line1.gif" width="7" height="20"> 
+           
+          
+        </li>
+        
+                
+        <li  ><a href="category.php?id=28" >Tools & Accessories</a> 
+          
+           
+          <img src="themes/ecmoban_shishangqiyi/images/icon_line1.gif" width="7" height="20"> 
+           
+          
+        </li>
+        
+                
+        <li  ><a href="category.php?id=25" >Nails</a> 
+          
+           
+          <img src="themes/ecmoban_shishangqiyi/images/icon_line1.gif" width="7" height="20"> 
+           
+          
+        </li>
+        
+                
+        <li  ><a href="category.php?id=22" >Cologne & Grooming</a> 
+          
+           
+          <img src="themes/ecmoban_shishangqiyi/images/icon_line1.gif" width="7" height="20"> 
+           
+          
+        </li>
+        
+                
+        <li  ><a href="category.php?id=26" >Perfume</a> 
+          
+           
+          <img src="themes/ecmoban_shishangqiyi/images/icon_line1.gif" width="7" height="20"> 
+           
+          
+        </li>
+        
+                
+        <li  ><a href="category.php?id=23" >Hair Care</a> 
+          
+           
+          <img src="themes/ecmoban_shishangqiyi/images/icon_line1.gif" width="7" height="20"> 
+           
+          
+        </li>
+        
+                
+        <li  ><a href="category.php?id=27" >Skin Care</a> 
+          
+           
+          <img src="themes/ecmoban_shishangqiyi/images/icon_line1.gif" width="7" height="20"> 
+           
+          
+        </li>
+        
+                
+        <li  ><a href="category.php?id=24" >Makeup</a> 
+          
+           
+          <img src="themes/ecmoban_shishangqiyi/images/icon_line1.gif" width="7" height="20"> 
+           
+          
+        </li>
+        
+                
+        <li  ><a href="category.php?id=21" >Bath & Body</a> 
           
            
           
@@ -362,8 +443,7 @@ var process_request = "正在处理您的请求...";
     </div>
     <div style=" line-height:22px;">
             &copy; 2005-2014 ECSHOP 版权所有，并保留所有权利。        <a href=" http://www.ecmoban.com" target="_blank" style=" vertical-align:middle;"><img src="themes/ecmoban_shishangqiyi/images/ecmoban.gif" alt="ECShop模板"></a>
-      <a href="http://www.ecshop.com" target="_blank" style=" font-family:Verdana; font-size:11px;">Powered&nbsp;by&nbsp;<strong><span style="color: #3366FF">ECShop</span>&nbsp;<span style="color: #FF9966">v2.7.3</span></strong></a>&nbsp;<a href="http://www.ecshop.com/license.php?product=ecshop_b2c&url=http%3A%2F%2Flocalhost%2Fecshop%2F" target="_blank"
->&nbsp;&nbsp;Licensed</a><br />
+      <a href="http://www.ecshop.com" target="_blank" style=" font-family:Verdana; font-size:11px;">Powered&nbsp;by&nbsp;<strong><span style="color: #3366FF">ECShop</span>&nbsp;<span style="color: #FF9966">v2.7.3</span></strong></a>&nbsp;<br />
       
     </div>
     <div class="blank"></div>  
