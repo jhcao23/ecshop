@@ -608,6 +608,21 @@ function order_fee($order, $goods, $consignee)
                     'tax'              => 0);
     $weight = 0;
 
+    //here we actually need to create an array, each key is shipping_category id like 1, 2, 3...
+    //and the size should be select count(shipping_category_id) from ecs_shipping_category!
+    $shipping_fee_array = 
+        array(
+            1=>array(0,0,0),//first 0 is count, second 0 maps to total, we mark category#1 for 'beauty' goods!!!
+            2=>array(0,0,0) //first 0 is count, second 0 maps to total, third 0 maps to shipping fee
+        );
+    
+    $count_1 = 0;
+    $total_1 = 0;
+    $shipping_fee_1 = 0;
+    $count_2 = 0;
+    $total_2 = 0;
+    $shipping_fee_2 = 0;
+    
     /* 商品总价 */
     foreach ($goods AS $val)
     {
@@ -621,21 +636,50 @@ function order_fee($order, $goods, $consignee)
         $total['market_price'] += $val['market_price'] * $val['goods_number'];
         
         //Touch Mars Solutions::sum up shipping fee for different shipping-category
-        //we need to find out how many shipping-category and for each shipping-category, how many goods
-        //that's why we need to create a new table category_shipping, and assign each goods one category_shipping
+        //we need to find out how many shipping-category in shopping car and, 
+        //how many goods for each shipping-category.
+        //that's why we need to create a new table shipping_category, and assign each goods one category_shipping
         //sometimes one shipping-category has waiver-max: when total product purchase is over the waiver-max, 
-        //shipping fee is set to 0.
-        if($val['shipping_category_if_real']==1){
-            if($total['real_goods_count']==1){
-                $total['shipping_fee']=10;
-            }else if($total['real_goods_count']>1){
-                $total['shipping_fee']+=5;
-            }
-            if($total['goods_price']>=1500){
-                $total['shipping_fee']=0;
-            }
+        //shipping fee is set to 0 => for example, the 'beauty' category.
+        
+        //for now, its just hard coded. 
+        //TOOD: need to update this calculation routine according to 
+        //shipping_category table and goods.shipping_category_if_real column.
+        $shipping_fee_array[$val['shipping_category_if_real']][0]+=$val['goods_number'];
+        $shipping_fee_array[$val['shipping_category_if_real']][1]+=$val['goods_price'] * $val['goods_number'];
+        
+        if($shipping_fee_array[$val['shipping_category_if_real']][0]==1){
+            $shipping_fee_array[$val['shipping_category_if_real']][2]=10;
+        }else if($shipping_fee_array[$val['shipping_category_if_real']][0]>1){
+            $shipping_fee_array[$val['shipping_category_if_real']][2]+=5;
         }
+        
+//        if($val['shipping_category_if_real']==1){
+//            $count_1+=$val['goods_number'];
+//            $total_1+=$val['goods_price'] * $val['goods_number'];
+//            if($count_1==1){
+//                $shipping_fee_1=10;                
+//            }else if($count_1>1){
+//                $shipping_fee_1+=5;
+//            }
+//            if($total_1>=1500){
+//                $shipping_fee_1=0;
+//            }
+//        }else{
+//            $count_2+=$val['goods_number'];
+//            $total_2+=$val['goods_price'] * $val['goods_number'];
+//            if($count_2==1){
+//                $shipping_fee_2=10;                
+//            }else if($count_2>1){
+//                $shipping_fee_2+=5;
+//            }
+//        }
     }
+    if($shipping_fee_array[1][1]>=1500){
+        $shipping_fee_array[1][2]=0;
+    }
+    //calculate shipping_fee here: sum different shipping_category shipping_fee
+    $total['shipping_fee']=$shipping_fee_array[1][2]+$shipping_fee_array[2][2];
 
     $total['saving']    = $total['market_price'] - $total['goods_price'];
     $total['save_rate'] = $total['market_price'] ? round($total['saving'] * 100 / $total['market_price']) . '%' : 0;
@@ -913,10 +957,12 @@ function get_order_sn()
  */
 function cart_goods($type = CART_GENERAL_GOODS)
 {
-    $sql = "SELECT rec_id, user_id, goods_id, goods_name, goods_sn, goods_number, shipping_category_if_real" . //add shipping_category_if_real by Touch Mars Solutions
+    $sql = "SELECT rec_id, user_id, goods_id, goods_name, goods_sn, goods_number, (select shipping_category_if_real " . //add shipping_category_if_real by Touch Mars Solutions 
+            "FROM " . $GLOBALS['ecs']->table('goods') . " g ".  //add shipping_category_if_real by Touch Mars Solutions
+            "where g.goods_id = cart.goods_id) as shipping_category_if_real, " . //add shipping_category_if_real by Touch Mars Solutions
             "market_price, goods_price, goods_attr, is_real, extension_code, parent_id, is_gift, is_shipping, " .
             "goods_price * goods_number AS subtotal " .
-            "FROM " . $GLOBALS['ecs']->table('cart') .
+            "FROM " . $GLOBALS['ecs']->table('cart') . " cart " .
             " WHERE session_id = '" . SESS_ID . "' " .
             "AND rec_type = '$type'";
 
