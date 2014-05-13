@@ -12,8 +12,7 @@ CREATE TABLE ecs_sessions
    discount   DECIMAL(3,2)                NOT NULL,
    email      VARCHAR(60)                 NOT NULL,
    data       CHAR(255)                   DEFAULT '' NOT NULL
-)
-ENGINE=MEMORY;
+);
 
 ALTER TABLE ecs_sessions
    ADD CONSTRAINT pk_ecs_sessions
@@ -28,8 +27,7 @@ CREATE TABLE ecs_sessions_data
    sesskey  VARCHAR(32) COLLATE utf8_bin   DEFAULT '' NOT NULL,
    expiry   INT UNSIGNED                   DEFAULT 0 NOT NULL,
    data     LONGTEXT                       NOT NULL
-)
-ENGINE=MyISAM;
+);
 
 ALTER TABLE ecs_sessions_data
    ADD CONSTRAINT pk_ecs_sessions_data
