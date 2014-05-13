@@ -577,6 +577,12 @@ elseif ($_REQUEST['act'] == 'insert')
                 {
                     $db->autoExecute($ecs->table('goods_gallery'), $goods_gallery, 'INSERT');
                 }
+                
+                //Touch Mars Solutions:
+                //I would like to add a special column to EXCEL -> goods_gallery_list,
+                //which is a list of img locations separated by comma ','
+                //so when the program reads into it, create one record into ecs_goods_gallery table
+                //and repeat this insertion for each img separated by comma for each product!
             }
         }
     }
