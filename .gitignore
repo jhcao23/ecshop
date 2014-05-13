@@ -1,3 +1,4 @@
 .idea
 temp/compiled
-/nbproject/private/
+nbproject
+data/config.php
