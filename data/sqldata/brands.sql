@@ -10,7 +10,7 @@ INSERT INTO ecs_brand
 VALUES
 (
   'Fresh',
-  'brands_logo/fresh.jpg',
+  'fresh.jpg',
   'Fresh',
   '',
   50,
