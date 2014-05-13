@@ -391,8 +391,3 @@ function get_flash_xml()
 }
 
 ?>
-=======
-<?php
-	echo "Welcome to Baidu Cloud";
-?>
->>>>>>> 5fb99d8c4493df703bad2793195f310d59da42d3
