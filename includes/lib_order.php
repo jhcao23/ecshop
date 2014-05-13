@@ -625,10 +625,15 @@ function order_fee($order, $goods, $consignee)
         //that's why we need to create a new table category_shipping, and assign each goods one category_shipping
         //sometimes one shipping-category has waiver-max: when total product purchase is over the waiver-max, 
         //shipping fee is set to 0.
-        if($total['real_goods_count']==1){
-            $total['shipping_fee']=10;
-        }else if($total['real_goods_count']>1){
-            $total['shipping_fee']+=5;
+        if($val['shipping_category_if_real']==1){
+            if($total['real_goods_count']==1){
+                $total['shipping_fee']=10;
+            }else if($total['real_goods_count']>1){
+                $total['shipping_fee']+=5;
+            }
+            if($total['goods_price']>=1500){
+                $total['shipping_fee']=0;
+            }
         }
     }
 
@@ -898,13 +903,17 @@ function get_order_sn()
 }
 
 /**
+ * Touch Mars Solutions Inc.::comment:
+ * this is very very very important method,
+ * used to retrieve goods from cart, reference by everywhere!
+ * 
  * 取得购物车商品
  * @param   int     $type   类型：默认普通商品
  * @return  array   购物车商品数组
  */
 function cart_goods($type = CART_GENERAL_GOODS)
 {
-    $sql = "SELECT rec_id, user_id, goods_id, goods_name, goods_sn, goods_number, " .
+    $sql = "SELECT rec_id, user_id, goods_id, goods_name, goods_sn, goods_number, shipping_category_if_real" . //add shipping_category_if_real by Touch Mars Solutions
             "market_price, goods_price, goods_attr, is_real, extension_code, parent_id, is_gift, is_shipping, " .
             "goods_price * goods_number AS subtotal " .
             "FROM " . $GLOBALS['ecs']->table('cart') .
