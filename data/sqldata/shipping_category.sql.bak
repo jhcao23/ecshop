@@ -34,3 +34,30 @@ VALUES
 
 alter table ecs_goods add column shipping_category_if_real SMALLINT UNSIGNED default 1 Null;
 commit;
+
+INSERT INTO ecs_shipping_category
+(
+  shipping_category_id,
+  shipping_category_name,
+  shipping_category_formula_sum,
+  shipping_category_formula_each,
+  description
+)
+VALUES
+(
+  2,
+  'simple shipping fee category',
+  '(${QUANTITY}%1)*(10+(${QUANTITY}-1)*5)',
+  '',
+  'first 1 $10 additional $5'
+);
+
+update ecs_goods
+set shipping_category_if_real= 2
+where cat_id not in
+(	select distinct cat_id
+	from ecs_category
+	where cat_id=16 or parent_id=16
+)
+;
+commit;
