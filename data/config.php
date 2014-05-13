@@ -1,15 +1,15 @@
 <?php
 // database host
-$db_host   = "127.0.0.1:3306";
+$db_host   = "sqld.duapp.com:4050";
 
 // database name
-$db_name   = "ecshop";
+$db_name   = "AmnGIFDNLxzTEDcwDjMK";
 
 // database username
-$db_user   = "root";
+$db_user   = "4Ynq7ZTA2uGuxarCMGYYj6MU";
 
 // database password
-$db_pass   = "Apple19820423";
+$db_pass   = "ERjHHBYPnGNxG51w6xLPYWhsgHsYgrSb";
 
 // table prefix
 $prefix    = "ecs_";
