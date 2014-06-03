@@ -1,4 +1,4 @@
-<?php exit;?>a:3:{s:8:"template";a:8:{i:0;s:76:"/Library/WebServer/Documents/ecshop/themes/ecmoban_shishangqiyi/category.dwt";i:1;s:87:"/Library/WebServer/Documents/ecshop/themes/ecmoban_shishangqiyi/library/page_header.lbi";i:2;s:83:"/Library/WebServer/Documents/ecshop/themes/ecmoban_shishangqiyi/library/ur_here.lbi";i:3;s:89:"/Library/WebServer/Documents/ecshop/themes/ecmoban_shishangqiyi/library/category_tree.lbi";i:4;s:83:"/Library/WebServer/Documents/ecshop/themes/ecmoban_shishangqiyi/library/history.lbi";i:5;s:86:"/Library/WebServer/Documents/ecshop/themes/ecmoban_shishangqiyi/library/goods_list.lbi";i:6;s:81:"/Library/WebServer/Documents/ecshop/themes/ecmoban_shishangqiyi/library/pages.lbi";i:7;s:87:"/Library/WebServer/Documents/ecshop/themes/ecmoban_shishangqiyi/library/page_footer.lbi";}s:7:"expires";i:1399944599;s:8:"maketime";i:1399940999;}<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php exit;?>a:3:{s:8:"template";a:8:{i:0;s:76:"/Library/WebServer/Documents/ecshop/themes/ecmoban_shishangqiyi/category.dwt";i:1;s:87:"/Library/WebServer/Documents/ecshop/themes/ecmoban_shishangqiyi/library/page_header.lbi";i:2;s:83:"/Library/WebServer/Documents/ecshop/themes/ecmoban_shishangqiyi/library/ur_here.lbi";i:3;s:89:"/Library/WebServer/Documents/ecshop/themes/ecmoban_shishangqiyi/library/category_tree.lbi";i:4;s:83:"/Library/WebServer/Documents/ecshop/themes/ecmoban_shishangqiyi/library/history.lbi";i:5;s:86:"/Library/WebServer/Documents/ecshop/themes/ecmoban_shishangqiyi/library/goods_list.lbi";i:6;s:81:"/Library/WebServer/Documents/ecshop/themes/ecmoban_shishangqiyi/library/pages.lbi";i:7;s:87:"/Library/WebServer/Documents/ecshop/themes/ecmoban_shishangqiyi/library/page_footer.lbi";}s:7:"expires";i:1399964567;s:8:"maketime";i:1399960967;}<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta name="Generator" content="ECSHOP v2.7.3" />
@@ -93,87 +93,6 @@ var process_request = "正在处理您的请求...";
         <li  ><a href="category.php?id=20" >营养保健</a> 
           
            
-          <img src="themes/ecmoban_shishangqiyi/images/icon_line1.gif" width="7" height="20"> 
-           
-          
-        </li>
-        
-                
-        <li   class=" current"><a href="category.php?id=16" >美容护肤</a> 
-          
-           
-          <img src="themes/ecmoban_shishangqiyi/images/icon_line1.gif" width="7" height="20"> 
-           
-          
-        </li>
-        
-                
-        <li  ><a href="category.php?id=28" >Tools & Accessories</a> 
-          
-           
-          <img src="themes/ecmoban_shishangqiyi/images/icon_line1.gif" width="7" height="20"> 
-           
-          
-        </li>
-        
-                
-        <li  ><a href="category.php?id=25" >Nails</a> 
-          
-           
-          <img src="themes/ecmoban_shishangqiyi/images/icon_line1.gif" width="7" height="20"> 
-           
-          
-        </li>
-        
-                
-        <li  ><a href="category.php?id=22" >Cologne & Grooming</a> 
-          
-           
-          <img src="themes/ecmoban_shishangqiyi/images/icon_line1.gif" width="7" height="20"> 
-           
-          
-        </li>
-        
-                
-        <li  ><a href="category.php?id=26" >Perfume</a> 
-          
-           
-          <img src="themes/ecmoban_shishangqiyi/images/icon_line1.gif" width="7" height="20"> 
-           
-          
-        </li>
-        
-                
-        <li  ><a href="category.php?id=23" >Hair Care</a> 
-          
-           
-          <img src="themes/ecmoban_shishangqiyi/images/icon_line1.gif" width="7" height="20"> 
-           
-          
-        </li>
-        
-                
-        <li  ><a href="category.php?id=27" >Skin Care</a> 
-          
-           
-          <img src="themes/ecmoban_shishangqiyi/images/icon_line1.gif" width="7" height="20"> 
-           
-          
-        </li>
-        
-                
-        <li  ><a href="category.php?id=24" >Makeup</a> 
-          
-           
-          <img src="themes/ecmoban_shishangqiyi/images/icon_line1.gif" width="7" height="20"> 
-           
-          
-        </li>
-        
-                
-        <li  ><a href="category.php?id=21" >Bath & Body</a> 
-          
-           
           
         </li>
         
@@ -209,7 +128,11 @@ var process_request = "正在处理您的请求...";
   
   <div class="AreaL">
     
-<div id="category_tree">
+ 
+ 
+    
+    
+  <div id="category_tree">
   <div class="tit">所有商品分类</div>
   <dl class="clearfix" >
    <div class="box1 cate" id="cate">
@@ -320,37 +243,10 @@ var process_request = "正在处理您的请求...";
 		<a href="category.php?id=16" class="  f_l">美容护肤</a>
 		</h1>
 		<ul style="display:none" >
-				 <a class="over_2" href="category.php?id=22">Cologne &amp; Grooming</a>  
+				 <a class="over_2" href="category.php?id=29">美妆品牌</a>  
 		 
 <div class="clearfix">
-</div>   
-				 <a class="over_2" href="category.php?id=23">Hair Care</a>  
-		 
-<div class="clearfix">
-</div>   
-				 <a class="over_2" href="category.php?id=24">Makeup</a>  
-		 
-<div class="clearfix">
-</div>   
-				 <a class="over_2" href="category.php?id=25">Nails</a>  
-		 
-<div class="clearfix">
-</div>   
-				 <a class="over_2" href="category.php?id=26">Perfume</a>  
-		 
-<div class="clearfix">
-</div>   
-				 <a class="over_2" href="category.php?id=27">Skin Care</a>  
-		 
-<div class="clearfix">
-</div>   
-				 <a class="over_2" href="category.php?id=28">Tools &amp; Accessories</a>  
-		 
-<div class="clearfix">
-</div>   
-				 <a class="over_2" href="category.php?id=21">Bath &amp; Body</a>  
-		 
-<div class="clearfix">
+<a class="over_3" href="category.php?id=30">Fresh 馥蕾诗</a>
 </div>   
 				</ul>
 		<div style="clear:both"></div>
@@ -474,6 +370,17 @@ document.getElementById('history_list').innerHTML = '您已清空最近浏览过
   
   <div class="AreaR">
 	 
+	  	  <div class="box">
+		 <div class="box_1">
+			<h3><span>商品筛选</span></h3>
+						<div class="screeBox">
+			  <strong>品牌：</strong>
+														<span>全部</span>
+																			<a href="category.php?id=16&amp;brand=1088&amp;price_min=0&amp;price_max=0">Fresh</a>&nbsp;
+												</div>
+											 </div>
+		</div>
+		<div class="blank"></div>
 	  	 
    
 <div class="box">
@@ -502,7 +409,77 @@ document.getElementById('history_list').innerHTML = '您已清空最近浏览过
   </h3>
       <form name="compareForm" action="compare.php" method="post" onSubmit="return compareGoods(this);">
             <div class="clearfix goodsBox" style="border:none; padding:11px 0 10px 0px;">
+             <div class="goodsItem" >
+           <a href="goods.php?id=44"><img src="images/201405/thumb_img/44_thumb_G_1399314643616.jpg" alt="睡莲眼部凝露(..." class="goodsimg" /></a><br />
+           <p><a href="goods.php?id=44" title="睡莲眼部凝露(美国地区产品)">睡莲眼部凝露(...</a></p>
+                                    市场价：<font class="market_s">￥371元</font><br />
+                                                                        本店价：<font class="shop_s">￥309元</font><br />
+                        			 
         </div>
+                 <div class="goodsItem" >
+           <a href="goods.php?id=43"><img src="images/201405/thumb_img/43_thumb_G_1399314447538.jpg" alt="睡莲滋润活颜（..." class="goodsimg" /></a><br />
+           <p><a href="goods.php?id=43" title="睡莲滋润活颜（美国地区产品）">睡莲滋润活颜（...</a></p>
+                                    市场价：<font class="market_s">￥263元</font><br />
+                                                                        本店价：<font class="shop_s">￥219元</font><br />
+                        			 
+        </div>
+                 <div class="goodsItem" >
+           <a href="goods.php?id=42"><img src="images/201405/thumb_img/42_thumb_G_1399314285360.jpg" alt="玫瑰润泽舒缓凝..." class="goodsimg" /></a><br />
+           <p><a href="goods.php?id=42" title="玫瑰润泽舒缓凝霜">玫瑰润泽舒缓凝...</a></p>
+                                    市场价：<font class="market_s">￥380元</font><br />
+                                                                        本店价：<font class="shop_s">￥269元</font><br />
+                        			 
+        </div>
+                 <div class="goodsItem" >
+           <a href="goods.php?id=41"><img src="images/201405/thumb_img/41_thumb_G_1399313945075.jpg" alt="睡莲滋润活颜面..." class="goodsimg" /></a><br />
+           <p><a href="goods.php?id=41" title="睡莲滋润活颜面霜">睡莲滋润活颜面...</a></p>
+                                    市场价：<font class="market_s">￥319元</font><br />
+                                                                        本店价：<font class="shop_s">￥266元</font><br />
+                        			 
+        </div>
+                 <div class="goodsItem" >
+           <a href="goods.php?id=40"><img src="images/201405/thumb_img/40_thumb_G_1399313649811.jpg" alt="意大利白泥清透..." class="goodsimg" /></a><br />
+           <p><a href="goods.php?id=40" title="意大利白泥清透磨砂膏">意大利白泥清透...</a></p>
+                                    市场价：<font class="market_s">￥290元</font><br />
+                                                                        本店价：<font class="shop_s">￥209元</font><br />
+                        			 
+        </div>
+                 <div class="goodsItem" >
+           <a href="goods.php?id=39"><img src="images/201405/thumb_img/39_thumb_G_1399313459490.jpg" alt="玫瑰润泽洁面泡..." class="goodsimg" /></a><br />
+           <p><a href="goods.php?id=39" title="玫瑰润泽洁面泡沫">玫瑰润泽洁面泡...</a></p>
+                                    市场价：<font class="market_s">￥350元</font><br />
+                                                                        本店价：<font class="shop_s">￥243元</font><br />
+                        			 
+        </div>
+                 <div class="goodsItem" >
+           <a href="goods.php?id=38"><img src="images/201405/thumb_img/38_thumb_G_1399313305929.jpg" alt="大豆眼部卸妆液..." class="goodsimg" /></a><br />
+           <p><a href="goods.php?id=38" title="大豆眼部卸妆液(Fresh美国市场产品)">大豆眼部卸妆液...</a></p>
+                                    市场价：<font class="market_s">￥0元</font><br />
+                                                                        本店价：<font class="shop_s">￥179元</font><br />
+                        			 
+        </div>
+                 <div class="goodsItem" >
+           <a href="goods.php?id=37"><img src="images/201405/thumb_img/37_thumb_G_1399313101164.jpg" alt="意大利白泥控油..." class="goodsimg" /></a><br />
+           <p><a href="goods.php?id=37" title="意大利白泥控油爽肤面膜">意大利白泥控油...</a></p>
+                                    市场价：<font class="market_s">￥450元</font><br />
+                                                                        本店价：<font class="shop_s">￥309元</font><br />
+                        			 
+        </div>
+                 <div class="goodsItem" >
+           <a href="goods.php?id=36"><img src="images/201405/thumb_img/36_thumb_G_1399312818962.jpg" alt="澄糖亮采磨砂面..." class="goodsimg" /></a><br />
+           <p><a href="goods.php?id=36" title="澄糖亮采磨砂面膜">澄糖亮采磨砂面...</a></p>
+                                    市场价：<font class="market_s">￥520元</font><br />
+                                                                        本店价：<font class="shop_s">￥359元</font><br />
+                        			 
+        </div>
+                 <div class="goodsItem" >
+           <a href="goods.php?id=35"><img src="images/201405/thumb_img/35_thumb_G_1399312622188.jpg" alt="红茶抗皱紧致修..." class="goodsimg" /></a><br />
+           <p><a href="goods.php?id=35" title="红茶抗皱紧致修护面膜">红茶抗皱紧致修...</a></p>
+                                    市场价：<font class="market_s">￥635元</font><br />
+                                                                        本店价：<font class="shop_s">￥529元</font><br />
+                        			 
+        </div>
+            </div>
         </form>
   
  </div>
@@ -530,11 +507,14 @@ var compare_no_goods = "您没有选定任何需要比较的商品或者比较�
 var btn_buy = "购买";
 var is_cancel = "取消";
 var select_spe = "请选择商品属性";
-</script><form name="selectPageForm" action="/ecshop/category.php" method="get">
+</script>
+<form name="selectPageForm" action="/ecshop/category.php" method="get">
  <div id="pager" class="pagebar">
-  <span class="f_l " style="margin-right:10px;">总计 <b>0</b>  个记录</span>
-      
-      </div>
+  <span class="f_l " style="margin-right:10px;">总计 <b>12</b>  个记录</span>
+                      <span class="page_now">1</span>
+                      <a href="category.php?id=16&amp;price_min=0&amp;price_max=0&amp;page=2&amp;sort=goods_id&amp;order=DESC">[2]</a>
+            
+  <a class="next" href="category.php?id=16&amp;price_min=0&amp;price_max=0&amp;page=2&amp;sort=goods_id&amp;order=DESC">下一页</a>    </div>
 </form>
 <script type="Text/Javascript" language="JavaScript">
 <!--
