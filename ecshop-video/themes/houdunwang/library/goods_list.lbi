@@ -1,0 +1,67 @@
+<!-- filter -->
+<div id="filter">
+        <div class="ft-order">
+                <dl>
+                        <dt>排序：</dt>
+                        <dd {if $pager.sort == 'goods_id'}class="current"{/if}>
+                                <a href="{$script_name}.php?category={$category}&display={$pager.display}&brand={$brand_id}&price_min={$price_min}&price_max={$price_max}&filter_attr={$filter_attr}&page={$pager.page}&sort=goods_id&order=<!-- {if $pager.sort == 'goods_id' && $pager.order == 'DESC'} -->ASC<!-- {else} -->DESC<!-- {/if} -->#goods_list">上架时间{if $pager.sort == 'goods_id' and $pager.order eq 'DESC'}↓{else}↑{/if}</a>
+                        </dd>
+                        <dd {if $pager.sort == 'shop_price'}class="current"{/if}>
+                                <a href="{$script_name}.php?category={$category}&display={$pager.display}&brand={$brand_id}&price_min={$price_min}&price_max={$price_max}&filter_attr={$filter_attr}&page={$pager.page}&sort=shop_price&order=<!-- {if $pager.sort == 'shop_price' && $pager.order == 'ASC'} -->DESC<!-- {else} -->ASC<!-- {/if} -->#goods_list">价格{if $pager.sort == 'shop_price' and $pager.order eq 'DESC'}↓{else}↑{/if}</a>
+                        </dd>
+                        <dd {if $pager.sort == 'last_update'}class="current"{/if}>
+                                <a href="{$script_name}.php?category={$category}&display={$pager.display}&brand={$brand_id}&price_min={$price_min}&price_max={$price_max}&filter_attr={$filter_attr}&page={$pager.page}&sort=last_update&order=<!-- {if $pager.sort == 'last_update' && $pager.order == 'DESC'} -->ASC<!-- {else} -->DESC<!-- {/if} -->#goods_list">更新时间{if $pager.sort == 'last_update' and $pager.order eq 'DESC'}↓{else}↑{/if}</a>
+                        </dd>
+                </dl>
+        </div>
+        {include file="./library/pages.lbi" /}
+</div>
+<!-- /filter -->
+<div id="goods-list">
+        <ul class="goods goods-list">
+            {foreach from=$goods_list item=goods}
+                <li>
+                        <div class="g-img">
+                                <a href="{$goods.url}"><img src="{$goods.goods_thumb}" alt="{$goods.goods_name}" /></a>
+                        </div>
+                        <div class="g-info">
+                            {$goods.goods_style_name}
+                        </div>
+                        <div class="g-price">
+                                {if $goods.promote_price gt 0}
+                                    {$goods.promote_price}
+                                {else /}
+                                    {$goods.shop_price}
+                                {/if}
+                        </div>
+                        <div class="g-btn">
+                                <a href="##" onclick="collect({$goods.goods_id});">收藏</a>
+                                <a href="##" onclick="return addToCart({$goods.goods_id});">购买</a>
+                                <a href="##" onclick="return Compare({$goods.goods_id},'{$goods.goods_name|escape}')">比较</a>
+                        </div>
+                </li>
+            {/foreach}
+        </ul>
+</div>
+<div id="dialog" class="fn-hide">
+
+</div>
+<div id="compare" class="fn-hide">
+    <form action="compare.php" method="get" id="compare-form">
+        <br />
+        <button>开始比较</button>
+    </form>
+</div>
+<script type="text/javascript">
+    function Compare(id,name){
+        if($('#compare').is(':hidden')){
+            $('#compare').show();
+        }
+        if($('#compare_goods_'+id).length==0){
+        $('#compare-form').prepend('<p><label id="compare_goods_'+id+'">'+name+'<input type="hidden" name="goods[]" value="'+id+'" /></label></p>');
+        }else{
+            alert('该商品已在比较列表中');
+        }
+        return false;
+    }
+</script>

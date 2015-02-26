@@ -1,0 +1,16 @@
+  {if $helps}
+  <div class="tmbottomlogodiv"><!--tmbottomlogodiv-->
+    {foreach from=$helps item=help}
+        <div class="tmbottomlogodiv_div1" style="margin:0;"><!--tmbottomlogodiv_div1-->
+                  <div class="tmbottomlogodiv_div1_headdiv"><!--tmbottomlogodiv_div1_headdiv-->
+                      <h2>{$help.cat_name}</h2>
+                  </div><!--tmbottomlogodiv_div1_headdiv-->                    
+                   <ul class="tmbottomlogodiv_div1_ul">
+                    {foreach from=$help.article item=art}
+                           <li class="tmbottomlogodiv_div1_ul_li"><a href="{$art.url}" title="{$art.title|escape:html}">{$art.short_title}</a></li>
+                    {/foreach}
+                     </ul>
+           </div><!--tmbottomlogodiv_div1-->
+    {/foreach}
+    </div><!--tmbottomlogodiv-->
+{/if}

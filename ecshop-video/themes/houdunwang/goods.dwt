@@ -1,0 +1,621 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$page_title}</title>
+<meta name="keywords" content="{$keywords}" />
+<meta name="description" content="{$description}" />
+<link href="./css/goods.css" rel="stylesheet" type="text/css" />
+<link href="./css/jqzoom.css" rel="stylesheet" type="text/css" />
+{insert_scripts files="jquery-1.8.3.min.js,jquery.jqzoom-core-pack.js,json2.js,common_hd.js" /}
+<style type="text/css">
+    .attr-radio label{
+        width: 80px;
+        height: 25px;
+        line-height:25px;
+        text-align:center;
+        border:2px #ccc solid;
+        margin: 2px;
+        float: left;
+        cursor:pointer;
+    }
+    .attr-select label{
+        border:2px #c00 solid;
+    }
+    .fn-hide{
+        display: none;
+    }
+    .clearfix{
+        clear: both;
+    }
+    ul#thumblist{display:block;}
+ul#thumblist li{float:left;margin-right:2px;list-style:none;}
+ul#thumblist li a{display:block;border:1px solid #CCC;}
+ul#thumblist li a.zoomThumbActive{
+    border:1px solid red;
+}
+ul#thumblist li a img{width: 60px;height: 60px;}
+.jqzoom{
+
+	text-decoration:none;
+	float:left;
+}
+.goods-attr-list li{
+    float:left;
+    width: 200px;
+    height: 25px;
+    line-height:25px;
+}
+</style>
+<script type="text/javascript">
+    var goodsid={$goods.goods_id};
+    $(function(){
+        $('.attr-radio label').click(function(){
+            if($(this).children('input').attr('type')=='radio'){
+                $(this).parents('.attr-radio-area').children('.attr-radio').removeClass('attr-select');
+                $(this).parents('.attr-radio-area').find(':input').attr('checked',false);
+            }
+           if($(this).children('input').attr('type')=='checkbox' &&  $(this).parent().is('.attr-select')){
+                $(this).parent().removeClass('attr-select');
+                $(this).children('input').attr('checked',false);
+                changePrice();
+                return false;
+            }
+            $(this).children('input').attr('checked',true);
+            $(this).parent().addClass('attr-select');
+            changePrice();
+            return false;
+        });
+
+        $('.jqzoom').jqzoom({
+            zoomType: 'standard',
+            lens:true,
+            preloadImages: false,
+            alwaysOn:false
+        });
+        $('#CommentForm').submit(function(){
+
+            var cmt={};
+            cmt.email           = $('input[name=email]').val();
+            cmt.content         = $('#content').val();;
+            cmt.type            = $('input[name=cmt_type]').val();
+            cmt.id              = $('input[name=id]').val();
+            cmt.captcha         = $('input[name=captcha]').val();
+            cmt.rank            = $('input[name=comment_rank]:checked').val();
+            if(cmt.email==''){
+                alert("请输入邮箱");//邮箱是不是正确的格式。
+                return false;
+            }
+            if($('input[name=captcha]').length>0 && cmt.captcha==''){
+                alert("请输入验证码");
+                return false;
+            }
+//            Ajax.call('comment.php', 'cmt=' + cmt.toJSONString(), commentResponse, 'POST', 'JSON');
+            $.post(
+            'comment.php',
+            {"cmt":JSON.stringify(cmt)},
+            function(data){
+               if (data.message)
+                {
+                  alert(data.message);
+                }
+            },'json'
+            );
+            return false;
+        });
+    });
+
+changePrice();
+//$('#buy_num').blur(function(){
+//changePrice();
+//});
+function execTotalPrice(data){
+    if (data.err_msg.length > 0)
+      {
+        alert(data.err_msg);
+      }
+      else
+      {
+        $('#buy_number').val(data.qty);
+        $('#total_price').html(data.result);
+      }
+}
+</script>
+</head>
+
+<body>
+    {include file="./library/good_header.lbi" /}
+    <div class="bodydiv"><!--bodydiv
+--> <div class="bodydiv_leftdiv_tmdiv"><!--bodydiv_leftdiv_tmdiv-->
+                 {$ur_here}
+               </div><!--bodydiv_leftdiv_tmdiv-->
+        <div class="bodydiv_leftdiv"><!--bodydiv_leftdiv-->
+
+               <div class="bodydiv_leftdiv_pinbaodiv"><!--bodydiv_leftdiv_pinbaodiv-->
+                     <a href="#" class="bodydiv_leftdiv_pinbaodiv_a"><!--bodydiv_leftdiv_pinbaodiv_a-->
+                         正品保障
+                     </a><!--bodydiv_leftdiv_pinbaodiv_a-->
+                      <a href="#" class="bodydiv_leftdiv_pinbaodiv_a"><!--bodydiv_leftdiv_pinbaodiv_a-->
+                         提供发票
+                     </a><!--bodydiv_leftdiv_pinbaodiv_a-->
+                      <div><a href="#" class="bodydiv_leftdiv_pinbaodiv_a"><!--bodydiv_leftdiv_pinbaodiv_a-->
+                         七天退换
+                     </a><!--bodydiv_leftdiv_pinbaodiv_a--></div>
+               </div><!--bodydiv_leftdiv_pinbaodiv-->
+               {include file="./library/category_tree.lbi" /}
+               <div class="mg-title">
+               相关商品
+               </div><!--mg-title-->
+               {if $related_goods}
+               {foreach from=$related_goods item=related}
+               <div class="mg-con" style="border:1px solid #CCCCCC;"><!--bodydiv_leftdiv_dianjie-->
+                     <a href="{$related.url}"><img src="{$related.goods_thumb}" alt="{$related.goods_name}" /></a>
+                     <a  href="{$related.url}" class="bldjie" style="color:#999999">{$related.goods_name}</a>
+                     {if $related.promote_price neq 0}
+                     <a class="mgi-price">{$related.formated_promote_price}</a>
+                     {else /}
+                     <a class="mgi-price">{$related.shop_price}</a>
+                     {/if}
+                    </div><!--mg-con-->
+               {/foreach}
+               {/if}
+               {if $goods_article_list}
+               <div class="mg-title">
+               相关文章
+               </div><!--mg-title-->
+               <div class="mg-con" style="border:1px solid #CCCCCC;">
+                   <ul class="goods_article">
+                       {foreach from=$goods_article_list item=article}
+                       <li><a href="{$article.url}" title="{$article.title|escape:html}">{$article.short_title|escape:html}</a></li>
+                       {/foreach}
+                   </ul>
+               </div>
+               {/if}
+              <div class="mg-title">
+               相关文章
+               </div><!--mg-title-->
+               <div class="mg-con" style="border:1px solid #CCCCCC;">
+                     <a href="#"><img src="./images/about.jpg" /></a>
+                     <a  href="#" class="bldjie" style="color:#999999">飞利浦旗舰店 三刀头充电式剃须刀PT720 可全身水洗 </a>
+                     <a class="mgi-price"> 559.00</a>
+                     <a class="bodydiv_leftdiv_dianjie_a3">月销量：<span style="color:#D6AA66;font-weight:bold;">705</span></a>
+                </div><!--mg-con-->
+             <div class="mg-title">
+               你可能感兴趣的商品
+               </div><!--mg-title-->
+               <div class="mg-con" style="border:1px solid #CCCCCC;"><!--bodydiv_leftdiv_dianjie-->
+                     <a href="#"><img src="./images/about.jpg" /></a>
+                     <a  href="#" class="bldjie" style="color:#999999">飞利浦旗舰店 三刀头充电式剃须刀PT720 可全身水洗 </a>
+                     <a class="mgi-price"> 559.00</a>
+                     <a class="bodydiv_leftdiv_dianjie_a3">月销量：<span style="color:#D6AA66;font-weight:bold;">705</span></a>
+                    </div><!--mg-con-->
+                <div class="mg-con" style="border:1px solid #CCCCCC;"><!--bodydiv_leftdiv_dianjie-->
+                     <a href="#"><img src="./images/about.jpg" /></a>
+                     <a  href="#" class="bldjie" style="color:#999999">飞利浦旗舰店 三刀头充电式剃须刀PT720 可全身水洗 </a>
+                     <a class="mgi-price"> 559.00</a>
+                     <a class="bodydiv_leftdiv_dianjie_a3">月销量：<span style="color:#D6AA66;font-weight:bold;">705</span></a>
+                    </div><!--mg-con-->
+                 <div class="mg-con" style="border:1px solid #CCCCCC;"><!--bodydiv_leftdiv_dianjie-->
+                     <a href="#"><img src="./images/about.jpg" /></a>
+                     <a  href="#" class="bldjie" style="color:#999999">飞利浦旗舰店 三刀头充电式剃须刀PT720 可全身水洗 </a>
+                     <a class="mgi-price"> 559.00</a>
+                     <a class="bodydiv_leftdiv_dianjie_a3">月销量：<span style="color:#D6AA66;font-weight:bold;">705</span></a>
+                    </div><!--mg-con-->
+                 <div class="mg-con" style="border:1px solid #CCCCCC;"><!--bodydiv_leftdiv_dianjie-->
+                     <a href="#"><img src="./images/about.jpg" /></a>
+                     <a  href="#" class="bldjie" style="color:#999999">飞利浦旗舰店 三刀头充电式剃须刀PT720 可全身水洗 </a>
+                     <a class="mgi-price"> 559.00</a>
+                     <a class="bodydiv_leftdiv_dianjie_a3">月销量：<span style="color:#D6AA66;font-weight:bold;">705</span></a>
+                    </div><!--mg-con-->
+                 <div class="mg-con" style="border:1px solid #CCCCCC;"><!--bodydiv_leftdiv_dianjie-->
+                     <a href="#"><img src="./images/about.jpg" /></a>
+                     <a  href="#" class="bldjie" style="color:#999999">飞利浦旗舰店 三刀头充电式剃须刀PT720 可全身水洗 </a>
+                     <a class="mgi-price"> 559.00</a>
+                     <a class="bodydiv_leftdiv_dianjie_a3">月销量：<span style="color:#D6AA66;font-weight:bold;">705</span></a>
+                    </div><!--mg-con-->
+                 <div class="mg-con" style="border:1px solid #CCCCCC;"><!--bodydiv_leftdiv_dianjie-->
+                     <a href="#"><img src="./images/about.jpg" /></a>
+                     <a  href="#" class="bldjie" style="color:#999999">飞利浦旗舰店 三刀头充电式剃须刀PT720 可全身水洗 </a>
+                     <a class="mgi-price"> 559.00</a>
+                     <a class="bodydiv_leftdiv_dianjie_a3">月销量：<span style="color:#D6AA66;font-weight:bold;">705</span></a>
+                    </div><!--mg-con-->
+
+
+
+        </div><!--bodydiv_leftdiv-->
+        <div class="bodydiv_rightdiv"><!--bodydiv_rightdiv-->
+             <div class="bodydiv_rightdiv_namediv"><!--bodydiv_rightdiv_namediv-->
+               {$goods.goods_style_name}
+                 <span class="jvbao"><a href="{$prev_good.url}">上一个</a><a href="{$next_good.url}">下一个</a></span>
+             </div><!--bodydiv_rightdiv_namediv-->
+           <div class="bodydiv_rightdiv_pormessage"><!--bodydiv_rightdiv_pormessage-->
+
+
+                      <div class="gallery"><!--gallery-->
+                          <div class="gallery-list">
+                           <!--图片放大-->
+                           {if $pictures}
+                           <div class="clearfix">
+                                <a href="{$goods.original_img}" class="jqzoom" rel='gal1' title="{$goods.goods_name}">
+                                    <img src="{$goods.goods_img}" title="{$goods.goods_name}">
+                                </a>
+                            </div>
+                           {/if}
+                           {include file="./library/goods_gallery.lbi" /}
+
+
+                           <!--/图片放大-->
+                           <div style="clear:both"></div>
+                           </div>
+                          <div class="sharediv" style="clear:both"><!--sharediv-->
+                              <a href="#" class="sharediv_a"></a>
+                              <span class="sharediv_shuspan"></span>
+                               <a href="#" class="sharediv_a" style="background-image: url(./images/share2.png);"></a>
+                                <a href="#" class="sharediv_a" style="background-image: url(./images/share3.png);"></a>
+                                 <a href="#" class="sharediv_a" style="background-image: url(./images/share4.png);"></a>
+                                  <a href="#" class="sharediv_a" style="background-image: url(./images/share5.png);"></a>
+                                   <a href="#" class="sharediv_a2"></a>
+                                   <a href="#" class="sharediv_a3 collect" onclick="javascript:collect({$goods.goods_id});">收藏该商品</a>
+                                     <a href="#" class="sharediv_a4">(人气1841)</a>
+                          </div><!--sharediv-->
+                      </div><!--gallery-->
+
+                         <div class="pormessage"><!--pormessage-->
+                            <div class="brdip"><!--brdip-->
+                                 <a class="prisea">本店价格 </a>
+                                  <a class="prisea2" id="total_price">{$goods.shop_price_formated} </a>
+                                  <a href="">原价:<del>{$goods.market_price}</del></a>
+                            </div><!--brdip-->
+                            {if $goods.is_promote and $goods.gmt_end_time}
+                            {insert_scripts files='lefttime.js'}
+                            <div class="brdip"><!--brdip-->
+                                 <a class="prisea">促销价： </a>
+                                 <span>{$goods.promote_price}</span>
+                                 <font class="f4" id="leftTime">{$lang.please_waiting}</font>
+                            </div><!--brdip-->
+                            {/if}
+                            <div>
+                                <table>
+                                    {foreach from=$rank_prices item=rank_price key=key}
+                                    <tr>
+                                        <th>{$rank_price.rank_name}：</th>
+                                        <td>{$rank_price.price}</td>
+                                    </tr>
+                                    {/foreach}
+                                </table>
+                            </div>
+                           <!--brdip-->
+                             <div class="brdip"><!--brdip-->
+                                 <a class="prisea">商品点击数 </a>
+
+                                  <span class="youhuispan" style="margin-left:0px;"><span style="color:#C31815;font-weight:bold;">{$goods.click_count}</span>件</span>
+
+                            </div><!--brdip-->
+                             <div class="brdip"><!--brdip-->
+                                 <a class="prisea">评价 </a>
+                                 <div class="leipingdiv">
+                                   <img src="./images/stars{$goods.comment_rank}.gif" style="vertical-align:bottom"/><a>{$goods.comment_rank}分</a>
+                                </div>
+                            </div><!--brdip-->
+                            {if $specification}
+                            <div class="attr-form">
+                            <div class="libuydiv"><!--libuydiv-->
+
+                                {foreach from=$specification item=spec key=spec_key}
+                                  <div class="colorfendiv"><!--colorfendiv-->
+                                     <div class="colorfendiv_leftdiv"><!--colorfendiv_leftdiv-->
+                                     {$spec.name}
+                                     </div><!--colorfendiv_leftdiv-->
+                                     {if $spec.attr_type eq 1}
+                                        {if $cfg.goodsattr_style eq 1}
+                                        <div class="attr-radio-area">
+                                        {foreach from=$spec.values key=key item=value}
+                                        <div class="attr-radio {if $key eq 0}attr-select{/if}">
+                                        <label for=""  title="{if $value.price gt 0}加{else /}减{/if}{$value.format_price}">{$value.label}
+                                            <input type="radio" name="" value="{$value.id}" {if $key eq 0}checked{/if} class="fn-hide" />
+                                        </label></div>
+                                        {/foreach}
+                                        </div>
+                                        {else /}
+                                        <select name="" id="">
+                                        {foreach from=$spec.values key=key item=value}
+                                            <option value="">{$value.label}--{if $value.price gt 0}加{else /}减{/if}{$value.format_price}</option>
+                                        {/foreach}
+                                        </select>
+                                        {/if}
+
+                                     {else /}
+                                      {foreach from=$spec.values key=key item=value}
+<div class="attr-radio {if $key eq 0}attr-select{/if}">
+                                            <label title="{if $value.price gt 0}加{else /}减{/if}{$value.format_price}"><input type="checkbox" name="" value="{$value.id}" class="fn-hide" {if $key eq 0}checked{/if} />{$value.label}</label>
+                                            </div>
+                                        {/foreach}
+                                     {/if}
+                                  </div><!--colorfendiv-->
+
+                                  {/foreach}
+
+
+
+                                  <div class="colorfendiv"><!--colorfendiv-->
+                                     <div class="colorfendiv_leftdiv"><!--colorfendiv_leftdiv-->
+                                    数量
+                                     </div><!--colorfendiv_leftdiv-->
+                                          <div class="colorfendiv_shuliangdiv"><!--colorfendiv_shuliangdiv-->
+                                              <input type="text" value="1" onblur="changePrice();" id="buy_num" class="shulianginput"/>
+                                               <div class="shuliangupdowndiv"><!--shuliangupdowndiv-->
+                                                <a class="shuliangup"></a>
+                                                <a class="shuliangdown"></a>
+                                          </div><!--shuliangupdowndiv-->
+                                             <span class="jianshuspan">件(库存423)</span>
+                                          </div><!--colorfendiv_shuliangdiv-->
+                                           <div class="colorfendiv_shuliangdiv" style="margin-top:15px;height:36px;"><!--colorfendiv_shuliangdiv-->
+                                               <a href="#" class="ligoua" onclick="javascript:addToCart({$goods.goods_id},0,'now');"></a>
+                                                <a href="#" class="ligoua2 addToCart" onclick="javascript:addToCart({$goods.goods_id});"></a>
+                                                <a href="user.php?act=affiliate&goodsid={$goods.goods_id}">推荐好友</a>
+                                          </div><!--colorfendiv_shuliangdiv-->
+
+                                  </div><!--colorfendiv-->
+                            </div><!--libuydiv-->
+
+</div>
+{/if}
+
+
+
+                            <div class="darendiv"><!--darendiv-->
+                                    <div class="darendiv_div1"><!--darendiv_div1-->
+                                         {if $goods.is_shipping}
+                                         该商品免运费
+                                         {/if}
+                                    </div><!--darendiv_div1-->
+                                    <div class="darendiv_div1"><!--darendiv_div1-->
+                                          <a href="#" class="darendiv_div1_lefta">送积分</a>
+                                           <span class="songjifenspan">
+                                                 单件送<span style="color:#2B8C00;font-size:bold;">
+                                                     {if $goods.give_integral eq -1}
+                                                     {$goods.shop_price}
+                                                     {else /}
+                                                     {$goods.give_integral}
+                                                     {/if}
+                                                 </span><a href="#" style="text-decoration:underline">{$points_name}</a>
+                                           </span>
+                                    </div><!--darendiv_div1-->
+                                    <div class="darendiv_div1"><!--darendiv_div1-->
+                                          <a href="#" class="darendiv_div1_lefta">付款方式</a>
+                                           <a href="#" class="darendiv_div1_tuihuoa" style="background-image:url(./images/xinyong.png)">信用卡(支持分期)</a>
+                                    </div><!--darendiv_div1-->
+                            </div><!--darendiv-->
+                      </div><!--pormessage-->
+               </div><!--bodydiv_rightdiv_pormessage-->
+               <div id="goods-attr-tab">
+               <div class="goods-attr"><!--goods-attr-->
+                     <div class="nav-item">
+                     商品详情
+                     </div>
+                    <div class="nav-item">
+                     成交记录
+                      </div>
+                      <div class="nav-item">
+                    商品评价
+                     </div>
+                   {if $package_goods_list}
+                      <div class="nav-item">
+                     超值礼包
+                     </div>
+                   {/if}
+                   {if $tags}
+                    <div class="nav-item">
+                    商品标签
+                    </div>
+                   {/if}
+
+
+               </div><!--goods-attr-->
+               <div class="goods-attr-c">
+                   <div>
+                            <div class="chengnuodiv"><!--chengnuodiv-->
+                                  天猫商家承诺：您付款之后，如果商家延迟发货，可以获得商品价格30%（不大于500元）的赔付金，<a href="#" style="color:#2953A6;">详见</a>。
+                            </div><!--chengnuodiv-->
+                            <div class="canshudiv"><!--canshudiv-->
+                                {foreach from=$properties key=key item=prop_list}
+                                     <div class="canshudiv_head"><!--canshudiv_head-->
+                                        {$key|escape}
+                                     </div><!--canshudiv_head-->
+                                     <ul class="goods-attr-list">
+                                     {foreach from=$prop_list item=attr}
+                                     <li><strong>{$attr.name}：</strong>{$attr.value}<span></span></li>
+                                     {/foreach}
+                                     </ul>
+                                 {/foreach}
+                            </div><!--canshudiv-->
+               </div>
+                   <div class="fn-hide">
+                       {include file="library/bought_note_guide.lbi" /}
+                   </div>
+                   <div class="fn-hide">
+                       {insert name="comments" id=$id type=$type /}
+                   </div>
+                    {if $package_goods_list}
+                    <div class="fn-hide">
+                        <table>
+                        {foreach from=$package_goods_list item=goods_list}
+                        <tr>
+                            <th colspan="2">{$goods_list.act_name}</th>
+                        </tr>
+
+                            {foreach from=$goods_list.goods_list item=package}
+                            <tr>
+                            <th>{$package.goods_name}</th>
+                            <td>数量：{$package.goods_number}</td>
+                            </tr>
+                            {/foreach}
+                            <tr>
+                                <td colspan="2">
+                                    原价：<del>{$goods_list.subtotal}</del>
+                                    礼包价：{$goods_list.package_price}
+                                    节 省：{$goods_list.saving}
+                                </td>
+                                <td>
+                                    <a href="" onclick="return addPackageToCart({$goods_list.act_id})">立即购买</a>
+                                </td>
+                            </tr>
+
+                        {/foreach}
+                        </table>
+                    </div>
+                   {/if}
+                   {if $tags}
+                    {foreach from=$tags item=tag}
+                    <a href="search.php?keywords={$tag.tag_words|escape:url}">{$tag.tag_words|escape:html}[{$tag.tag_count}]</a>
+                    {/foreach}
+                   {/if}
+               </div>
+               </div>
+               <script type="text/javascript">
+                       $('#goods-attr-tab .nav-item').click(function(){
+                           $('#goods-attr-tab .goods-attr-c').children('div').hide();
+                           $('#goods-attr-tab .goods-attr-c').children('div').eq($(this).index()).show();
+                       });
+               </script>
+               <div id="goods_desc">
+                   {$goods.goods_desc}
+               </div>
+              <div class="subComment">
+                  <form action="" id="CommentForm" method="post">
+                  <table>
+                      <tr>
+                          <th>用户名:</th>
+                          <td>
+                              {if $smarty.session.user_name}
+                              {$smarty.session.user_name}
+                              {else /}
+                              匿名用户
+                              {/if}
+                          </td>
+                      </tr>
+                      <tr>
+                          <th>邮箱：</th>
+                          <td>
+                              <input type="text" name="email" id="" />
+                          </td>
+                      </tr>
+                      <tr>
+                          <th>等级:</th>
+                          <td>
+                               <input name="comment_rank" type="radio" value="1" id="comment_rank1" /> <img src="../images/stars1.gif" />
+          <input name="comment_rank" type="radio" value="2" id="comment_rank2" /> <img src="../images/stars2.gif" />
+          <input name="comment_rank" type="radio" value="3" id="comment_rank3" /> <img src="../images/stars3.gif" />
+          <input name="comment_rank" type="radio" value="4" id="comment_rank4" /> <img src="../images/stars4.gif" />
+          <input name="comment_rank" type="radio" value="5" checked="checked" id="comment_rank5" /> <img src="../images/stars5.gif" />
+                          </td>
+                      </tr>
+                      <tr>
+                          <th>内容：</th>
+                          <td>
+                              <textarea name="content" id="content" cols="30" rows="10"></textarea>
+                              <input type="hidden" name="cmt_type" value="{$comment_type}" />
+                              <input type="hidden" name="id" value="{$id}" />
+                          </td>
+                      </tr>
+                      {if $enabled_captcha}
+                      <tr>
+                          <th>验证码:</th>
+                          <td>
+                              <input type="text" name="captcha" id="" />
+                              <img src="captcha.php?{$rand}" alt="captcha" onClick="this.src='captcha.php?'+Math.random()" class="captcha">
+                          </td>
+                      </tr>
+                      {/if}
+                      <tr>
+                          <th></th>
+                          <td>
+                              <input type="submit" value="提交评论" />
+                          </td>
+                      </tr>
+                  </table>
+                      </form>
+              </div>
+               <div class="pingjiaheaddiv"><!--pingjiaheaddiv-->
+                  服务质量
+               </div><!--pingjiaheaddiv-->
+               <div class="zhiliangdiv"><!--zhiliangdiv-->
+                    <div class="zhiliangdiv_leftdiv"><!--zhiliangdiv_leftdiv-->
+                           <span class="zhiliangdiv_leftdiv_span1">服务质量记录</span>
+                           <span class="zhiliangdiv_leftdiv_span2">
+                                 <a href="#" class="tuisua">退款速度：</a><span style="color:#FD6648;">2.6天</span> （比行业平均水平慢<span style="color:#FD6648;">0.9天）</span>
+                           </span>
+                           <span class="zhiliangdiv_leftdiv_span2">
+                                 <a href="#" class="tuisua">投诉纠纷：</a>无 超过360天无投诉
+                           </span>
+                           <span class="zhiliangdiv_leftdiv_span2">
+                                 <a href="#" class="tuisua">违规行为：</a>无 超过360天无违规行为
+                           </span>
+                    </div><!--zhiliangdiv_leftdiv-->
+                     <div class="zhiliangdiv_rightdiv"><!--zhiliangdiv_rightdiv-->
+                          <span class="zhiliangdiv_leftdiv_span2">
+                                 <a href="#" class="tuisua">纠纷退款：</a>无 超过330天无纠纷退款
+                           </span>
+                           <span class="zhiliangdiv_leftdiv_span2">
+                                 <a href="#" class="tuisua">处罚情况：</a>该会员遵守淘宝用户行为管理规则良好
+                           </span>
+                    </div><!--zhiliangdiv_rightdiv-->
+               </div><!--zhiliangdiv-->
+
+               {include file="./library/bought_goods.lbi" /}
+               <div style="height:30px;margin-left:310px;margin-bottom:20px;"><a href="#" class="othersamea" style="width:130px;background-position: 109px 0px;">进入店铺查看更多 </a></div>
+               {include file="./library/safenote.lbi" /}
+        </div><!--bodydiv_rightdiv-->
+ </div><!--bodydiv
+-->
+    <div class="bottomborderdiv"></div>
+
+  {include file="./library/goods_help.lbi" /}
+    <br/>
+    <center style="font-size:12px;color:#000;line-height:18px;">
+    <a href="#" class="colorblue">关于天猫</a>&nbsp;
+    <a href="#" class="colorblue"> 帮助中心 </a>&nbsp;
+    <a href="#" class="colorblue"> 网站地图 </a>&nbsp;
+     <a href="#" class="colorblue">诚聘英才</a>&nbsp;
+      <a href="#" class="colorblue">联系我们</a>&nbsp;
+       <a href="#" class="colorblue">网站合作</a>&nbsp;
+        <a href="#" class="colorblue">版权说明 </a>&nbsp;
+        <br/><br />
+         <a href="#" class="colorblue">阿里巴巴集团</a>&nbsp;
+         ： 阿里巴巴网络 -
+    <a href="#" class="colorblue"> 中国站</a>&nbsp;
+    <a href="#" class="colorblue"> 国际站</a>&nbsp;
+     <a href="#" class="colorblue">日文站</a>&nbsp;|&nbsp;
+      <a href="#" class="colorblue">淘宝网</a>&nbsp;
+       <a href="#" class="colorblue">一淘网</a>&nbsp;
+        <a href="#" class="colorblue">聚划算</a>&nbsp;
+        <a href="#" class="colorblue">支付宝</a>&nbsp;
+        <a href="#" class="colorblue">中国雅虎</a>&nbsp;
+        <a href="#" class="colorblue">淘宝联盟</a>&nbsp;
+        <a href="#" class="colorblue">集团研究中心</a>&nbsp;
+        <a href="#" class="colorblue">淘宝天下</a>&nbsp;
+        <a href="#" class="colorblue">嗨淘网</a>&nbsp;
+        <br /><br />
+        Copyright 2003-2012, 版权所有TMALL.COM
+        <br />
+        增值电信业务经营许可证：浙B2-20110446
+        <br />
+        网络文化经营许可证：<a href="#" class="colorblue">浙网文[2012]0234-028号</a>
+         <br />
+         互联网医疗保健信息服务 审核同意书 浙 卫网审【2012】6号
+         <br />
+          互联网药品信息服务资质证书编号：浙-（经营性）-2012-0005
+malldetail135012.cm6
+<br />
+    </center>
+    <script type="text/javascript">
+        var gmt_end_time={$goods.gmt_end_time};
+        var day = "天";
+        var hour = "小时";
+        var minute = "分钟";
+        var second = "秒";
+        var end = "结束";
+        onload_leftTime();
+    </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+{if $notes}
+<table>
+    <tr>
+        <th>用户名</th>
+        <th>{$lang.number}</th>
+        <th>购买时间</th>
+        <th>订单状态</th>
+    </tr>
+    {foreach from=$notes item=note}
+    <tr>
+        <td>
+            {if $note.user_name}
+            {$note.user_name}
+            {else /}
+            匿名用户
+            {/if}
+        </td>
+        <td>
+            {$note.goods_number}
+        </td>
+        <td>
+            {$note.add_time}
+        </td>
+        <td>
+            {if $note.order_status}
+            {$lang.turnover}
+            {else /}
+            {$lang.is_cancel}
+            {/if}
+        </td>
+    </tr>
+    {/foreach}
+</table>
+{/if}

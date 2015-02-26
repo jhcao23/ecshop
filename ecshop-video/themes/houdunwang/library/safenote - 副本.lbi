@@ -1,0 +1,22 @@
+{if $goods}
+<ul class="redu-goods">
+    {foreach from=$goods item=good}
+    <li>
+            <div class="rg-list">
+                    <a href=""><img src="{$good.thumb}" alt="{$good.name|escape:html}"></a>
+            </div>
+            <div class="rg-name">
+                    <a href="{$good.url}" title="{$good.name|escape:html}">{$good.short_style_name}</a>
+            </div>
+            <div class="price">
+                    <span>后盾价：</span>
+                     {if $good.promote_price neq ""}
+                    {$good.promote_price}
+                     {else}
+                    {$good.shop_price}
+                    {/if}
+            </div>
+    </li>
+    {/foreach}
+</ul>
+{/if}

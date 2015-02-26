@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<title>{$page_title}</title>
+        <meta name="Keywords" content="{$keywords}" />
+        <meta name="Description" content="{$description}" />
+        <link href="./css/base.css" rel="stylesheet" type="text/css" />
+        <link href="./css/public.css" rel="stylesheet" type="text/css" />
+        <link href="./css/list.css" rel="stylesheet" type="text/css" />
+        <link href="./css/jqueryui.css" rel="stylesheet" type="text/css" />
+
+        {insert_scripts files="jquery-1.8.3.min.js,jqueryui-min.js" /}
+</head>
+<body>
+    {include file="./library/page_header.lbi" /}
+	<div class="hd-w">
+
+		<div class="here-ur">
+                    <span>当前位置：</span>
+                        {$ur_here}
+		</div>
+	</div>
+	<div class="hd-w">
+		<div class="hd-wl">
+                    {include file="./library/category_tree.lbi" }
+			<!-- /list-cate -->
+                        {if $hot_goods}
+                        <div class="m">
+				<div class="mt">
+					<h2><font color="red">精品</font>商品</h2>
+				</div>
+				<div class="mc">
+					<ul class="goods">
+                                            {foreach from=$hot_goods item=good}
+						<li>
+							<div class="g-img">
+								<a href="{$good.url}"><img src="{$good.thumb}" alt="{$good.name|escape}" /></a>
+								<b></b>
+							</div>
+							<div class="g-info">
+								<a href="{$good.url}" title="{$good.name|escape}" target="_blank">{$good.short_style_name}</a>
+							</div>
+							<div class="g-price">
+								{if $good.promote_price gt 0}
+                                                                {$good.promote_price}
+                                                                {else /}
+                                                                {$good.shop_price}
+                                                                {/if}
+							</div>
+						</li>
+                                            {/foreach}
+                                        </ul>
+                                </div>
+                        </div>
+                        {/if}
+			<!-- 购买的人还会购买 -->
+                        {include file="./library/history.lbi" /}
+			<!-- /购买的人还会购买 -->
+			<!-- 周销量排行 -->
+			<div class="m">
+				<div class="mt">
+					<h2>一周销量排行榜</h2>
+				</div>
+			</div>
+			<!-- /周销量排行 -->
+		</div>
+		<div class="hd-wr">
+                    {if $best_goods}
+			<div class="goods-tads">
+				<div class="mt">
+					<h2>热卖推荐</h2>
+				</div>
+				<div class="mc list">
+                                    {foreach from=$best_goods item=best}
+					<dl>
+						<dt>
+							<a target="_blank" href="{$best.url}"><img src="{$best.thumb}" width="100" height="100" alt="{$best.name|escape}"></a>
+						</dt>
+						<dd>
+							<div class="p-name">
+								<a target="_blank" href="{$best.url}">
+                                                                    {$best.short_style_name}
+								</a>
+							</div>
+							<div class="p-price"><span>特价：</span>
+                                                            {if $best.promote_price gt 0}
+                                                            {$best.promote_price}
+                                                            {else /}
+                                                            {$best.shop_price}
+                                                            {/if}
+                                                        </div>
+							<div class="btns">
+								<a target="_blank" href="{$best.url}">立即抢购</a>
+							</div>
+						</dd>
+					</dl>
+                                    {/foreach}
+                                </div>
+			</div>
+                    {/if}
+			<div class="goods-cond">
+                            {if $brands.1 || $price_grade.1 || $filter_attr_list}
+				<div class="mt">
+					<h2><!--<strong></strong>&nbsp;-&nbsp;-->商品筛选</h2>
+					<span>
+						<a href="category.php?id={$category}">重置筛选条件</a>
+					</span>
+				</div>
+                            <div class="gc-l">
+                            {if $brands.1}
+<dl>
+						<dt>品牌：</dt>
+						<dd>
+                                                    {foreach from=$brands item=brand}
+                                                    {if $brand.selected}
+                                                        <span><a href="{$brand.url}" class="current">{$brand.brand_name}</a></span>
+                                                        {else /}
+							<span><a href="{$brand.url}">{$brand.brand_name}</a></span>
+                                                       {/if}
+                                                        {/foreach}
+						</dd>
+					</dl>
+                            {/if}
+                            {if $price_grade.1}
+<dl>
+						<dt>价格：</dt>
+						<dd>
+                                                    {foreach from=$price_grade item=grade}
+                                                    {if $grade.selected}
+                                                        <span><a href="{$grade.url}" class="current">{$grade.price_range}</a></span>
+                                                        {else /}
+							<span><a href="{$grade.url}">{$grade.price_range}</a></span>
+                                                       {/if}
+                                                        {/foreach}
+						</dd>
+					</dl>
+                            {/if}
+
+                            {foreach from=$filter_attr_list item=filter_attr}
+<dl>
+                            <dt>{$filter_attr.filter_attr_name|escape:html}：</dt>
+                            <dd>
+                                {foreach from=$filter_attr.attr_list item=attr}
+                                         {if $attr.selected}
+                                        <span><a href="###" class="current">{$attr.attr_value}</a></span>
+                                         {else}
+                                        <span><a href="{$attr.url}">{$attr.attr_value}</a></span>
+                                         {/if}
+                                {/foreach}
+                                </dd>
+			</dl>
+                        {/foreach}
+				</div>
+				<div id="advanced"><div><a href="search.php?act=advanced_search">高级搜索</a><b></b></div></div>
+                            {/if}
+			</div>
+			<!-- /cond -->
+			{include file="./library/goods_list.lbi" /}
+		</div>
+	</div>
+    {include file="./library/page_footer.lbi" /}
+    {insert_scripts files="list.js,common_hd.js"}
+</body>
+</html>

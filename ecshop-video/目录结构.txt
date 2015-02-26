@@ -1,0 +1,28 @@
+admin	后台功能
+    ---templates 后台模板
+data    上传文件、SQL备份文件、配置项
+    ---sqldata 数据库备份文件
+    ---config.php 配置文件
+includes 公用的类库和函数
+languages 语言目录
+    ---zh_cn
+	---common.php公用语言文件
+themes 网站模板文件夹
+
+
+1.在themes 文件夹建立自己的模板文件夹，比如：houdunwang
+2.在自己的模板文件夹下面建立style.css（必须有）。
+3.配置我们的模板信息，即编辑style.css。内容为
+/*
+Template Name: 模板名称
+Template URI: 模板链接地址
+Description: 模板的描述
+Version: 模板的版本号
+Author: 模板作者
+Author URI: 作者url
+Logo filename: images目录下logo文件名
+Template Type: type_0
+*/
+4.建立images目录，存放图片
+5.建立library目录存放公用html模板，例如网站头部，网站脚部。
+6.在images目录存放我们的模板预览图,文件名必须screenshot.png ，大小需为200px*150px

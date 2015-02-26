@@ -1,0 +1,354 @@
+/*
+ *@desc   商品列表页描述
+ *@author Bo
+ */
+.hd-w{
+	width: 1210px;
+	height: auto;
+	margin: 0px auto;
+}
+.hd-wl{
+	width: 211px;
+	height: auto;
+	overflow: hidden;
+	float: left;
+}
+.hd-wr{
+	width: 989px;
+	height: auto;
+	overflow: hidden;
+	float: right;
+}
+.here-ur{
+	height: 20px;
+	padding: 0 0 4px 6px;
+	margin-bottom: 10px;
+	border-bottom: 1px solid #DDD;
+	overflow: hidden;
+	line-height: 20px;
+        margin-top:10px;
+}
+.list-cate{
+	border: 2px solid #DDD;
+	overflow: hidden;
+}
+.list-cate .item h3{
+	height: 30px;
+	background-color: #FAFAFA;
+	padding: 0 7px 0 10px;
+	border-top: 1px dotted #CCC;
+	margin-top: -1px;
+	line-height: 30px;
+	cursor: pointer;
+	font-weight: bold;
+	font-size: 13px;
+}
+.list-cate .item h3 b{
+	float: right;
+	display: block;
+	width: 16px;
+	height: 16px;
+	margin-top: 6px;
+	background: url(../images/plus.jpg) no-repeat 0px 0px;
+}
+.list-cate .current h3{
+	height: 29px;
+	border-bottom: 1px dotted #CCC;
+}
+.list-cate .current h3 b{
+	background-image: url(../images/minus.jpg);
+}
+.list-cate .item ul{
+	display: none;
+	height: auto;
+	overflow: hidden;
+}
+.list-cate .current ul{
+	display: block;
+}
+.list-cate .item li{
+	width: 85px;
+	height: 18px;
+	padding: 3px 4px 3px 10px;
+	float: left;
+        overflow: hidden;
+}
+.m{
+	border: 1px solid #DDD;
+	margin-top: 10px;
+}
+.mt{
+	height: 31px;
+	padding-left: 8px;
+	line-height: 28px;
+	background: url(../images/mt_bg.jpg) #E6E6E6 repeat-x;
+}
+.mt h2{
+	font-size: 14px;
+	font-weight: bold;
+}
+.goods{
+	padding:0px 8px;
+	overflow: hidden;
+}
+.goods li{
+	padding: 6px 0px;
+	border-top: 1px dotted #CCC;
+	margin-top: -1px;
+}
+.goods .g-img a{
+	display: block;
+}
+.goods .g-img img{
+	display: block;
+	margin: 0px auto;
+	border: 1px #ddd solid;
+	padding: 3px;
+}
+.goods .g-info{
+	height: 36px;
+	overflow: hidden;
+	word-break: break-all;
+	margin-top: 3px;
+}
+.goods .g-info strong{
+	color: #c00;
+}
+.goods .g-price{
+	color: #c00;
+	text-align: center;
+	font-weight: bold;
+}
+.goods .g-btn{
+	width: 165px;
+	height: auto;
+	overflow: hidden;
+	margin: 10px auto;
+}
+.goods .g-btn a{
+	display: block;
+	width: 50px;
+	height: 22px;
+	float: left;
+	line-height: 22px;
+	text-align: center;
+	background: url(../images/bg_hotsale.gif) no-repeat 0 -632px;
+	margin-right: 5px;
+	overflow: hidden;
+}
+.goods-list li{
+	float: left;
+	margin-top: 0px;
+	border-top: none;
+	width: 215px;
+}
+.goods-list li .g-img img{
+	border: none;
+}
+.goods-list li .g-img a:hover img{
+	border: 1px #FFD9C0 solid;
+	padding: 2px;
+}
+.goods-tads{
+	position: relative;
+	height: 147px;
+	border: 1px solid #FC0;
+	margin-bottom: 10px;
+	padding-bottom: 12px;
+}
+.goods-tads .mt{
+	background: url(../images/hot.gif) no-repeat left top;
+	padding-left: 43px;
+	height: 46px;
+	line-height: 46px;
+}
+.goods-tads .list dl{
+	width: 240px;
+	height: auto;
+	overflow: hidden;
+	float: left;
+}
+.goods-tads .list dl dt{
+	float: left;
+	width: 100px;
+	height: 100px;
+}
+.goods-tads .list dl dd{
+	float: left;
+	width: 140px;
+}
+.goods-tads .list dl .p-name{
+	height: 30px;
+	line-height: 30px;
+	overflow: hidden;
+}
+.goods-tads .list dl .p-price{
+	color: #c00;
+}
+.goods-tads .list dl .p-price span{
+	color: #666;
+}
+.goods-tads .list .btns a{
+	display: block;
+	width: 64px;
+	height: 25px;
+	text-align: center;
+	line-height: 25px;
+	background: url(../images/bg_hotsale.gif) no-repeat 0 -466px;
+	color: #FFF;
+	margin: 6px 0px;
+}
+.goods-tads .list .btns a:hover{
+	text-decoration: none;
+}
+.goods-cond{
+	border-top: 2px solid #EED97C;
+	clear: both;
+}
+.goods-cond .mt{
+height: 28px;
+line-height: 28px;
+padding: 0 10px 8px;
+background: url(../images/bg_hotsale.gif) repeat-x 0 -552px;
+}
+.goods-cond .mt h2{
+	color: #C30;
+	float: left;
+}
+.goods-cond .mt span{
+	float: right;
+}
+.goods-cond .gc-l{
+	overflow: hidden;
+}
+.goods-cond .gc-l dl{
+	height: auto;
+	overflow: hidden;
+	padding: 9px 0px;
+	margin: 0px 5px;
+	zoom: 1;
+	border-top: 1px dashed #E7CDAE;
+	margin-top: -1px;
+}
+.goods-cond .gc-l dl dt{
+	float: left;
+	width: 100px;
+	font-weight: bold;
+	text-align: right;
+}
+.goods-cond .gc-l dd{
+	float: left;
+	width: 872px;
+}
+.goods-cond .gc-l dd span{
+		height: 20px;
+		margin-right: 15px;
+		padding-top: 5px;
+}
+.goods-cond .gc-l dd span a{
+		color:#005AA0;
+		padding: 2px;
+		white-space: nowrap;
+}
+.goods-cond .gc-l dd span a:hover{
+	background-color:#005AA0;
+	color: #FFF;
+	text-decoration: none;
+}
+.goods-cond .gc-l dd .current{
+	background-color:#005AA0;
+	color: #FFF;
+}
+#advanced {
+	position: relative;
+	height: 4px;
+	border: 1px solid #E6E6E6;
+	overflow: visible;
+	margin-bottom: 30px;
+	margin-top: 5px;
+}
+#advanced div {
+	position: absolute;
+	width: 60px;
+	height: 20px;
+	padding-right: 19px;
+	top: 4px;
+	right: 451px;
+	border-left: 1px solid #E6E6E6;
+	border-right: 1px solid #E6E6E6;
+	border-bottom: 1px solid #E6E6E6;
+	border-top: 1px solid white;
+	line-height: 20px;
+	text-align: right;
+	background: url(../images/bg_tit_home.gif) #E6E6E6 no-repeat -10px -32px;
+}
+#advanced a {
+	color: #005AA0;
+}
+#advanced div b {
+display: block;
+position: absolute;
+top: 6px;
+right: 10px;
+overflow: hidden;
+width: 7px;
+height: 8px;
+background: url(../images/bg_hotsale.gif) no-repeat -65px -632px;
+}
+#filter{
+	height: auto;
+	overflow: hidden;
+	border-style: solid;
+	border-width: 2px 1px 1px;
+	border-color: #CE0000 #DEDFDE #DEDFDE #DEDFDE;
+	background-position: 0 0;
+	margin-bottom: 20px;
+	background-image: url(../images/f.png);
+	background-repeat: repeat-x;
+	padding: 5px 8px;
+}
+#filter .ft-order{
+	float: left;
+}
+#filter .ft-order dt{
+	display: inline-block;
+	float: left;
+	line-height: 26px;
+}
+#filter .ft-order dd{
+	display: inline-block;
+	float: left;
+	height: 24px;
+	border: 1px solid #CECBCE;
+	background-position: 0 -80px;
+	background-color: white;
+	margin-right: 5px;
+	line-height: 24px;
+	overflow: hidden;
+	padding: 0px 4px;
+}
+#filter .ft-order dl .current{
+	background: #c00;
+	border: 1px #900 solid;
+	color: #FFF;
+}
+#filter .ft-order dl .current a{
+	color: #FFF;
+}
+#filter .total-num{
+	float: right;
+	height: 22px;
+	padding: 2px 15px 2px 0;
+	border-right: 1px solid #E7E3E7;
+	line-height: 22px;
+	color: #C30;
+}
+#filter .goods-page{
+	float: right;
+	width: 100px;
+	text-align: center;
+	line-height: 22px;
+}
+#goods-list li{
+	padding: 0px 14px 10px;
+}

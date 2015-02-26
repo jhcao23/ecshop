@@ -1,0 +1,52 @@
+    <div class="headdiv"><!--headdiv-->
+         <div class="rightback"><!--rightback-->
+         </div><!--rightback-->
+          <div class="headdiv_centerdiv"><!--headdiv_centerdiv-->
+                <div class="headdiv_centerdiv_top"><!--headdiv_centerdiv_top-->
+                       <div class="headdiv_centerdiv_top_xiediv"><!--headdiv_centerdiv_top_xiediv-->
+                       </div><!--headdiv_centerdiv_top_xiedivend-->
+                       <div class="hcdtr"><!--hcdtr-->
+                           <a href="mobile/" class="hcdtr_a1"><!--hcdtr_a1-->
+                              手机版
+                           </a><!--hcdtr_a1end-->
+                         <span class="shuspan"></span>
+<a class="hcdtr_a2">
+                              喵，欢迎来后盾！
+                           </a>
+                    {insert name="member_info" /}
+                           <span class="shuspan"></span>
+                           <a href="user.php?act=collection_list" class="hcdtr_a6">
+                             收藏夹
+                            </a>
+                             <span class="shuspan"></span>
+                              <a href="flow.php" class="hcdtr_a7">
+                             查看购物车
+                            </a>
+                             {if $navigator_list.top}
+                             {foreach from=$navigator_list.top item=topnav}
+                             <a href="{$topnav.url}" {if $topnav.opennew eq 1}target="_blank" {/if}>{$topnav.name}</a>
+                             {/foreach}
+                             {/if}
+                       </div><!--hcdtrend-->
+            </div><!--headdiv_centerdiv_topend-->
+            <div class="hcbdi"><!--hcbdi-->
+               <a href="#" class="">
+                   <img src="../images/logo.gif" alt="" />
+               </a>
+               <div class="hcbdi_inputdiv">
+                   <form action="search.php" method="get" id="submitSearch">
+                    <input type="text" name="keywords" id="keywords" class="hcbdi_input" />
+                    <input type="submit" value="  " style="width: 80px;height: 30px;background: none;" />
+                    </form>
+               </div>
+            </div><!--hcbdiend-->
+          </div><!--headdiv_centerdivend-->
+</div><!--headdivend-->
+<script type="text/javascript">
+    $('#submitSearch').submit(function(){
+        if($('#keywords').val()==''){
+            alert('请输入关键字！');
+            return false;
+        }
+    });
+</script>

@@ -1,0 +1,14 @@
+<div class="clearfix">
+{if $pictures}
+<ul id="thumblist" class="clearfix" >
+{foreach from=$pictures item=pic}
+<!--zoomThumbActive-->
+        <li>
+            <a class="" href='javascript:void(0);' rel="{gallery: 'gal1', smallimage: '{$pic.thumb_middle_url}',largeimage: '{$pic.img_url}'}" title="{$pic.img_desc}">
+                <img src='{$pic.thumb_url}' >
+            </a>
+        </li>
+        {/foreach}
+</ul>
+{/if}
+ </div>

@@ -1,0 +1,82 @@
+﻿$goods
+   goods_id	商品id
+  'cat_id' => 商品分类id
+  'goods_sn' => 	商品编号
+  'goods_name' => 	商品名称
+  'goods_style_name' => 商品名称（有样式、如加粗）
+  'click_count' => 点击次数
+  'brand_id' => 品牌ID
+  'provider_name' => string '' (length=0)
+  'goods_number' => 商品库存
+  'goods_weight' => 商品重量
+  'market_price' => 市场价格
+  'shop_price' => 本店售价
+  'shop_price_formated' => 本店售价（格式化好）
+  'is_promote' => 是否促销
+  'promote_price' => 促销价格
+  'promote_start_date' => 促销开始时间
+  'promote_end_date' => 促销结束时间
+  'warn_number' => 库存警告数量
+  'keywords' => 页面关键字
+  'goods_brief' => 商品简要
+  'goods_desc' => 商品描述
+  'goods_thumb' => 商品缩略图(小)
+  'goods_img' => 商品缩略图(中)
+  'original_img' => 商品缩略图(大)
+  'is_real' => string '1' (length=1)
+  'extension_code' => 扩展标识(如：是否虚拟卡等[virtual_card])
+  'is_on_sale' => 是否上架（允许销售/不允许销售）
+  'is_alone_sale' => 能作为普通商品销售，否则只能作为配件或赠品销售。
+  'is_shipping' => 是否免运费
+  'integral' => 购买商品可使用积分
+  'add_time' => 添加时间
+  'sort_order' => string '100' (length=3)
+  'is_delete' => string '0' (length=1)
+  'is_best' => 是否精品
+  'is_new' => 是否新品
+  'is_hot' => 是否热销
+  'bonus_type_id' => 红利类型
+  'last_update' =>上次更新时间
+  'goods_type' => 商品类型
+  'seller_note' => 商家备注（仅供商家自己看的信息）
+  'give_integral' => 购买该商品时赠送消费积分数,-1表示按商品价格赠送
+  'rank_integral' => 购买该商品时赠送等级积分数,-1表示按商品价格赠送
+  'suppliers_id' => 供应商ID
+  'is_check' => null
+  'measure_unit' => 计量单位(如：个、件、台)
+  'goods_brand' => 商品品牌
+  'bonus_money' => 红利
+  'comment_rank' => 用户评价等级
+  'rank_price' => string '3700' (length=4)
+  'watermark_img' => 水印图像
+  'promote_price_org' => int 0
+  'gmt_end_time' => 促销结束时间
+  'goods_brand_url' => 商品品牌链接地址
+
+$id 	商品ID
+$cfg 	配置文件信息
+$promotion	促销信息
+$promotion_info	所有促销信息
+$promote_end_time 促销结束时间
+$categories	商品分类
+$page_title	 页面标题
+$keywords	关键字
+$description	描述
+$prev_good	上一个商品
+$next_good	下一个商品
+$ur_here	当前位置
+$properties	商品属性
+$specification	商品规格
+$attribute_linked	相同属性的关联商品
+$related_goods	关联商品
+$goods_article_list	关联文章
+$fittings	配件
+$rank_prices	会员等级价格
+$pictures	商品相册
+
+$bought_goods	购买了该商品的用户还购买了哪些商品
+$goods_rank	商品的销售排名
+$tags		商品的标记
+$package_goods_list	商品的关联礼包
+$volume_price_list	商品价格优惠区间
+商品详情页读取浏览记录 {insert name='history'}

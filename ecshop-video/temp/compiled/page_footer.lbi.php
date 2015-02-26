@@ -1,0 +1,133 @@
+<div id="link" class="hd-w">
+<div id="link-page">
+	<dl class="link-page-1">
+		<dt>
+			<b></b>
+			<h2>购物指南</h2>
+		</dt>
+		<dd>
+			<ul>
+			<li><a href="###">购物流程</a></li>
+			<li><a href="###">会员介绍</a></li>
+			<li><a href="###">团购/机票</a></li>
+			<li><a href="###">常见问题</a></li>
+			<li><a href="###">大家电</a></li>
+			<li><a href="###">联系客服</a></li>
+			</ul>
+		</dd>
+	</dl>
+	<dl class="link-page-2">
+		<dt>
+			<b></b>
+			<h2>购物指南</h2>
+		</dt>
+		<dd>
+			<ul>
+			<li><a href="###">购物流程</a></li>
+			<li><a href="###">会员介绍</a></li>
+			<li><a href="###">团购/机票</a></li>
+			<li><a href="###">常见问题</a></li>
+			<li><a href="###">大家电</a></li>
+			<li><a href="###">联系客服</a></li>
+			</ul>
+		</dd>
+	</dl>
+	<dl class="link-page-3">
+		<dt>
+			<b></b>
+			<h2>购物指南</h2>
+		</dt>
+		<dd>
+			<ul>
+			<li><a href="###">购物流程</a></li>
+			<li><a href="###">会员介绍</a></li>
+			<li><a href="###">团购/机票</a></li>
+			<li><a href="###">常见问题</a></li>
+			<li><a href="###">大家电</a></li>
+			<li><a href="###">联系客服</a></li>
+			</ul>
+		</dd>
+	</dl>
+	<dl class="link-page-4">
+		<dt>
+			<b></b>
+			<h2>购物指南</h2>
+		</dt>
+		<dd>
+			<ul>
+			<li><a href="###">购物流程</a></li>
+			<li><a href="###">会员介绍</a></li>
+			<li><a href="###">团购/机票</a></li>
+			<li><a href="###">常见问题</a></li>
+			<li><a href="###">大家电</a></li>
+			<li><a href="###">联系客服</a></li>
+			</ul>
+		</dd>
+	</dl>
+	<dl class="link-page-5">
+		<dt>
+			<b></b>
+			<h2>购物指南</h2>
+		</dt>
+		<dd>
+			<ul>
+			<li><a href="###">购物流程</a></li>
+			<li><a href="###">会员介绍</a></li>
+			<li><a href="###">团购/机票</a></li>
+			<li><a href="###">常见问题</a></li>
+			<li><a href="###">大家电</a></li>
+			<li><a href="###">联系客服</a></li>
+			</ul>
+		</dd>
+	</dl>
+</div>
+<div id="son-com">
+	<h2>京东商城各地分公司</h2>
+	<p class="com-desc">
+		京东商城已在全国360个城市建立了自己的分公司。提供上门自提、货到付款、POS机刷卡和售后上门服务。
+	</p>
+	<p class="com-link">
+		<a href="">查看各地分公司 &gt;</a>
+	</p>
+</div>
+</div>
+<div id="copy-right" class="hd-w">
+	<div class="copy-link">
+	<a href="###">关于我们</a>
+	|
+	<a href="###">联系我们</a>
+	|
+	<a href="###">人才招聘</a>
+	|
+	<a href="###">商家入驻</a>
+	|
+	<a href="###">迷你挑</a>
+	|
+	<a href="###">奢侈品网</a>
+	|
+	<a href="###">广告服务</a>
+	|
+	<a href="###">手机京东</a>
+	|
+	<a href="###">友情链接</a>
+	|
+	<a href="###">销售联盟</a>
+	|
+	<a href="###">京东社区</a>
+	|
+	<a href="###">京东公益</a>
+	|
+	<a href="###">english site</a>
+	</div>
+	<div class="cp-info">
+		<p>北京市公安局朝阳分局备案编号110105014669  |  京ICP证070359号  |   <a href="###">互联网药品信息服务资格证编号(京)-非经营性-2011-0034</a></p>
+<p>音像制品经营许可证苏宿批005号  |  出版物经营许可证编号新出发(苏)批字第N-012号  |  互联网出版许可证编号新出网证(京)字150号</p>
+<p>Copyright©2004-2012  360buy京东商城 版权所有</p>
+	</div>
+	<div class="cp-ba">
+		<a href=""><img src="themes/houdunwang/images/ba1.gif" alt=""></a>
+		<a href=""><img src="themes/houdunwang/images/ba2.gif" alt=""></a>
+		<a href=""><img src="themes/houdunwang/images/ba3.gif" alt=""></a>
+		<a href=""><img src="themes/houdunwang/images/ba4.gif" alt=""></a>
+	</div>
+</div>

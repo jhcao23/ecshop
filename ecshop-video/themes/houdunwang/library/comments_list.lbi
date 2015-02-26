@@ -1,0 +1,33 @@
+{if $comments}
+<table>
+{foreach from=$comments key=key item=comment}
+<tr>
+    <td>{if $comment.username}{$comment.username}{else /}匿名用户{/if}</td>
+    <td>
+        {$comment.add_time}
+    </td>
+    <td>
+        <img src="../images/stars{$comment.rank}.gif" alt="{$comment.comment_rank}" />
+    </td>
+</tr>
+<tr>
+    <td></td>
+    <td colspan="2">
+        {$comment.content}
+    </td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td>
+        	 {if $comment.re_content}
+        <p><font class="f1">{$lang.admin_username}</font>{$comment.re_content}</p>
+                 {/if}
+    </td>
+</tr>
+{/foreach}
+</table>
+{else /}
+
+<span>该商品暂时没有评论，你可以添加评论！</span>
+{/if}

@@ -1,0 +1,54 @@
+html{
+	background: #FFF;
+	color: #000;
+}
+body{
+	font: 12px/1.5 Arial,宋体;
+}
+*{
+	margin: 0;
+	padding: 0;
+}
+a{
+	text-decoration: none;
+	color: #333;
+}
+a:hover{
+	text-decoration: underline;
+	color: #c00;
+}
+fieldset,img{
+	border: none;
+}
+table{
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+iframe{
+	display: block;
+	border: 0;
+}
+ol,ul{
+	list-style: none;
+}
+.hide{
+	display: none;
+}
+.block{
+	display: block;
+}
+.fl-left{
+	float: left;
+}
+.fl-right{
+	float: right;
+}
+.fl-clear{
+	clear: both;
+}
+input{
+
+}
+h1,h2{
+	
+}

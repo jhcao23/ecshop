@@ -1,0 +1,19 @@
+{if $bought_goods}
+<div class="pingjiaheaddiv"><!--pingjiaheaddiv-->
+                 买了此商品的会员通常还买了
+</div>
+{foreach from=$bought_goods item=bought}
+ <div class="reseemaindiv"><!--reseemaindiv-->
+    <div class="reseemaindiv_div1"><!--reseemaindiv_div1-->
+          <a href="{$bought.url}"><img src="{$bought.goods_thumb}" style="margin-bottom:10px;"/></a>
+
+          <a href="#" title="{$bought.goods_name}">{$bought.short_name}</a><br/>
+        {if $bought.promote_price neq 0}
+        <span class="hongspan">{$bought.formated_promote_price}</span>
+        {else}
+        <span class="hongspan">{$bought.shop_price}</span>
+        {/if}
+    </div><!--reseemaindiv_div1-->
+</div><!--reseemaindiv-->
+{/foreach}
+{/if}

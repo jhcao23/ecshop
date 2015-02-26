@@ -1,0 +1,20 @@
+<div class="list-cate" id="list-cate">
+    {foreach from=$categories item=cateone}
+    <!--current-->
+    <div class="item {if $cateone.id eq $category}current{/if}">
+            <h3>
+                {if $cateone.cat_id}
+                    <b></b>
+                {/if}
+                    <a href="{$cateone.url}">{$cateone.name|escape}</a>
+            </h3>
+            <ul>
+                {foreach from=$cateone.cat_id item=catetwo}
+                <li title="{$catetwo.name|escape}">
+                           <a href="{$catetwo.url}">{$catetwo.name|escape}</a>
+                    </li>
+                {/foreach}
+            </ul>
+    </div>
+    {/foreach}
+</div>
